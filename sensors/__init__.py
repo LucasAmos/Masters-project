@@ -8,7 +8,8 @@ from flask.ext.sqlalchemy import SQLAlchemy
 if __name__ == "__main__":
     app.run()
 
-import sensors.views
+
 import sensors.database
 
 db = SQLAlchemy(app)
+import sensors.views
