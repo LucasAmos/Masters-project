@@ -7,3 +7,4 @@ if __name__ == "__main__":
     app.run()
 
 import sensors.views
+import sensors.database
