@@ -26,12 +26,28 @@
 
 <div class="container">
 
+   <div class="row">
+
+        <div class="col-md-3"> Time</div>
+        <div class="col-md-2"> Temperature (c)</div>
+        <div class="col-md-2"> Pressure</div>
+        <div class="col-md-2"> Light </div>
+
+              &nbsp;  &nbsp;
+        </div>
+
     {% for reading in readings %}
         <div class="row">
-           {{ reading.temperature }}   &nbsp; {{ reading.pressure }} &nbsp; {{ reading.light}}
+
+        <div class="col-md-3"> {{ reading.time }} </div>
+        <div class="col-md-2"> {{ reading.temperature }} </div>
+        <div class="col-md-2"> {{ reading.pressure }} </div>
+        <div class="col-md-2"> {{ reading.light}} </div>
+
+              &nbsp;  &nbsp;
         </div>
     {% endfor %}
-
+{#
     <div class="row">
         <form action="." method="POST">
             <textarea class="form-control" name="temperature" placeholder="Enter a temperature value"></textarea>
@@ -42,7 +58,7 @@
 
             <input type="submit" value="Post comment">
         </form>
-    </div>
+    </div>#}
 
 
 
