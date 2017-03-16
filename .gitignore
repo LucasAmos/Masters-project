@@ -1,5 +1,6 @@
 database.py
 run.py
+sensordata.db
 
 *.py[co]
 *.DS_*
@@ -29,7 +30,7 @@ pip-log.txt
 #Mr Developer
 venv
 *.pyc
-build
+
 
 .idea/inspectionProfiles/
 .idea/misc.xml
