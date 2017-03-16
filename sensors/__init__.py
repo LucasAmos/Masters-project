@@ -16,3 +16,4 @@ import sensors.database
 
 db = SQLAlchemy(app)
 import sensors.views
+import sensors.models
