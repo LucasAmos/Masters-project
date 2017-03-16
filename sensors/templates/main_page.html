@@ -26,16 +26,19 @@
 
 <div class="container">
 
-    {% for comment in comments %}
+    {% for reading in readings %}
         <div class="row">
-            {{ comment.content }}  &nbsp; {{ comment.temperature }}
+           {{ reading.temperature }}   &nbsp; {{ reading.pressure }} &nbsp; {{ reading.light}}
         </div>
     {% endfor %}
 
     <div class="row">
         <form action="." method="POST">
-            <textarea class="form-control" name="contents" placeholder="Enter a comment"></textarea>
-            <textarea class="form-control" name="temperature" placeholder="Enter a temperature"></textarea>
+            <textarea class="form-control" name="temperature" placeholder="Enter a temperature value"></textarea>
+                        <textarea class="form-control" name="pressure" placeholder="Enter a pressure value"></textarea>
+                        <textarea class="form-control" name="light" placeholder="Enter a light value"></textarea>
+
+
 
             <input type="submit" value="Post comment">
         </form>

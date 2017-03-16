@@ -1,6 +1,7 @@
 database.py
 run.py
 sensordata.db
+manage.py
 
 *.py[co]
 *.DS_*

@@ -1,16 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask
+from flask.ext.sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
 
 app.config["DEBUG"] = True
 
-
-from flask.ext.sqlalchemy import SQLAlchemy
-
-
-
 if __name__ == "__main__":
     app.run()
-
 
 import sensors.database
 
