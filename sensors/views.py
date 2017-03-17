@@ -43,7 +43,7 @@ class AddSensorReading(Resource):
 api.add_resource(AddSensorReading, '/addreading')
 
 # example api usage
-# put('http://localhost:8080/todo1', data={'temperature': '3', 'pressure': '5', 'light' : '6'}).json()
+# put('http://localhost:8080/addreading', data={'temperature': '3', 'pressure': '5', 'light' : '6'}).json()
 
 
 class GetSensorReading(Resource):

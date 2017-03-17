@@ -1,5 +1,9 @@
 <html>
 <head>
+    <head>
+        {{ moment.include_jquery() }}
+        {{ moment.include_moment() }}
+    </head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,28 +30,34 @@
 
 <div class="container">
 
-   <div class="row">
+    <table class = "table table-striped">
+        <caption> Raspberry PI A sensor readings</caption>
 
-        <div class="col-md-3"> Time</div>
-        <div class="col-md-2"> Temperature (c)</div>
-        <div class="col-md-2"> Pressure</div>
-        <div class="col-md-2"> Light </div>
+        <thead>
+        <tr>
+            <th>Time</th>
+            <th>Temperature</th>
+            <th>Pressure</th>
+            <th>Light</th>
+        </tr>
+        </thead>
 
-              &nbsp;  &nbsp;
-        </div>
+        <tbody>
 
-    {% for reading in readings %}
-        <div class="row">
+        {% for reading in readings %}
+            <tr>
+                <td> {{ moment(reading.time).format('MMMM Do YYYY, h:mm:ss a') }}</td>
+                <td> {{ reading.temperature }}</td>
+                <td> {{ reading.pressure }}</td>
+                <td> {{ reading.light }}</td>
+                <td></td>
+            </tr>
 
-        <div class="col-md-3"> {{ reading.time }} </div>
-        <div class="col-md-2"> {{ reading.temperature }} </div>
-        <div class="col-md-2"> {{ reading.pressure }} </div>
-        <div class="col-md-2"> {{ reading.light}} </div>
+        {%  endfor %}
 
-              &nbsp;  &nbsp;
-        </div>
-    {% endfor %}
-{#
+        </tbody>
+    </table>
+    {#
     <div class="row">
         <form action="." method="POST">
             <textarea class="form-control" name="temperature" placeholder="Enter a temperature value"></textarea>
