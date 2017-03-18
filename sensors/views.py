@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect, request
+from flask import render_template, url_for, redirect, request, jsonify, json
 from sensors import app, db
 from models import Sensordata
 from flask_restful import Resource, Api
@@ -10,13 +10,11 @@ api = Api(app)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        return render_template("main_page.html", readings=Sensordata.query.all())
 
-    reading = Sensordata(temperature=request.form["temperature"], light=request.form["light"],
-                         pressure=request.form["pressure"])
-    db.session.add(reading)
-    db.session.commit()
-    return redirect(url_for('index'))
+
+       return render_template("main_page.html", readings=Sensordata.query.all())
+
+
 
 
 class AddSensorReading(Resource):
