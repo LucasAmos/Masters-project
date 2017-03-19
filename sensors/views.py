@@ -11,8 +11,7 @@ api = Api(app)
 def index():
     if request.method == "GET":
 
-
-       return render_template("main_page.html", readings=Sensordata.query.all())
+        return render_template("main_page.html", readings=Sensordata.query.order_by(Sensordata.time.desc()).all())
 
 
 
