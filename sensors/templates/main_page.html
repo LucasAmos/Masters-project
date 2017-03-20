@@ -43,7 +43,7 @@
                 <td> {{ moment(reading.time).format('MMMM Do YYYY, h:mm:ss a') }}</td>
                 <td> {{ reading.temperature }}</td>
                 <td> {{ reading.pressure }}</td>
-                <td> {{ (reading.light }}</td>
+                <td> {{ (reading.light / 65535.0) * 100}}</td>
                 <td></td>
             </tr>
 
