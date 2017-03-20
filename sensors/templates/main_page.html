@@ -29,9 +29,9 @@
         <thead>
         <tr>
             <th>Time</th>
-            <th>Temperature</th>
-            <th>Pressure</th>
-            <th>Light</th>
+            <th>Temperature  (ºC)</th>
+            <th>Pressure (Pa)</th>
+            <th>Light (0-65535.0</th>
         </tr>
         </thead>
 
@@ -41,9 +41,9 @@
         {% for reading in readings %}
             <tr>
                 <td> {{ moment(reading.time).format('MMMM Do YYYY, h:mm:ss a') }}</td>
-                <td> {{ reading.temperature }} (ºC)</td>
-                <td> {{ reading.pressure }} (Pa)</td>
-                <td> {{ reading.light }}(0-65535.0)</td>
+                <td> {{ reading.temperature }}</td>
+                <td> {{ reading.pressure }}</td>
+                <td> {{ reading.light }})</td>
                 <td></td>
             </tr>
 
