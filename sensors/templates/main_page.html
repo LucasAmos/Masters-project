@@ -51,7 +51,7 @@
                 <td> {{ (reading.pressure /100) | round(2, 'floor') }}</td>
 
 
-                <td> <a href="#" data-toggle="tooltip" data-placement="top" title={{ ((reading.light | round / 65535.0) * 100 )}}>{{ reading.light | float}}</a>
+                <td> <a href="#" data-toggle="tooltip" data-placement="top" title={{ ((reading.light / 65535.0) * 100 )}}>{{ reading.light | float}}</a>
 </td>
 
 
