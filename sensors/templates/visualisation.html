@@ -1,0 +1,48 @@
+<html>
+<head>
+
+    <link href="../static/css/styles.css" rel="stylesheet">
+
+    <script type="text/javascript" src="../static/libraries/d3.v3.min.js"></script>
+
+
+    <title> D3 Tutorial </title>
+
+    <style>
+        p{
+            font-family: sans-serif;
+            color: grey;
+        }
+    </style>
+</head>
+<body>
+
+
+<h2>D3 Sandbox</h2>
+
+<script>
+
+    var json = '{{data3 | tojson}}';
+    var json = JSON.parse(json)
+
+
+
+    d3.csv(json, function(error,data){
+
+
+        console.log(data);
+
+
+        d3.select("body")
+            .selectAll("P")
+            .data(json)
+            .enter()
+            .append("p")
+            .text(function (d) {
+                return d.temperature;
+            })
+    })
+</script>
+
+</body>
+</html>
