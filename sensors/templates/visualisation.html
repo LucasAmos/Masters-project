@@ -6,6 +6,12 @@
     <script type="text/javascript" src="../static/libraries/d3.v3.min.js"></script>
 
 
+    <script src="./static/libraries/d3.parcoords.js"></script>
+    <link rel="stylesheet" type="text/css" href="./static/libraries/d3.parcoords.css">
+    <div id="example" class="parcoords" style="width:1500px;height:700px"></div>
+
+
+
     <title> D3 Tutorial </title>
 
     <style>
@@ -30,7 +36,7 @@
     d3.csv(json, function(error,data){
 
 
-        console.log(data);
+        console.log(json);
 
 
         d3.select("body")
@@ -39,9 +45,23 @@
             .enter()
             .append("p")
             .text(function (d) {
-                return d.temperature;
+                return d.temperature ;
             })
     })
+
+    var data = [
+        [0,-0,0,0,0,3 ],
+        [1,-1,1,2,1,6 ],
+        [2,-2,4,4,0.5,2],
+        [3,-3,9,6,0.33,4],
+        [4,-4,16,8,0.25,9]
+    ];
+
+    var pc = d3.parcoords()("#example")
+        .data(json)
+        .render()
+        .ticks(3)
+        .createAxes();
 </script>
 
 </body>
