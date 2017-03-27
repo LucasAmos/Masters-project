@@ -24,7 +24,7 @@
 <body>
 
 
-<h2>D3 Sandbox</h2>
+<h2>parallel coordinates </h2>
 
 <script>
 
@@ -40,28 +40,14 @@
 
 
         d3.select("body")
-            .selectAll("P")
-            .data(json)
-            .enter()
-            .append("p")
-            .text(function (d) {
-                return d.temperature ;
-            })
-    })
-
-    var data = [
-        [0,-0,0,0,0,3 ],
-        [1,-1,1,2,1,6 ],
-        [2,-2,4,4,0.5,2],
-        [3,-3,9,6,0.33,4],
-        [4,-4,16,8,0.25,9]
-    ];
 
     var pc = d3.parcoords()("#example")
         .data(json)
         .render()
         .ticks(3)
         .createAxes();
+    })
+
 </script>
 
 </body>
