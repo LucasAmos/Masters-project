@@ -8,7 +8,6 @@
 
     <script src="./static/libraries/d3.parcoords.js"></script>
     <link rel="stylesheet" type="text/css" href="./static/libraries/d3.parcoords.css">
-    <div id="example" class="parcoords" style="width:1500px;height:700px"></div>
 
 
 
@@ -24,7 +23,10 @@
 <body>
 
 
-<h2>parallel coordinates </h2>
+<h2>Parallel coordinates </h2>
+
+
+    <div id="example" class="parcoords" style="width:1500px;height:700px"></div>
 
 <script>
 
@@ -39,7 +41,6 @@
         console.log(json);
 
 
-        d3.select("body")
 
     var pc = d3.parcoords()("#example")
         .data(json)
