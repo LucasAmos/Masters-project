@@ -15,7 +15,7 @@ def index():
 
 
 @app.route("/iain", methods=["GET", "POST"])
-def index():
+def iaiain():
 
         return render_template("iain.html")
 
