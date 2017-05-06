@@ -14,13 +14,6 @@ def index():
         return render_template("main_page.html", readings=Sensordata.query.order_by(Sensordata.time.desc()).all())
 
 
-@app.route("/iain", methods=["GET", "POST"])
-def iaiain():
-
-        return render_template("iain.html")
-
-
-
 @app.route("/visualisation")
 def visualisation():
     readings = Sensordata.query.all()
