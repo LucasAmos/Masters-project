@@ -18,5 +18,4 @@ class Sensordata(db.Model):
     temperature = db.Column(db.Float)
     pressure = db.Column(db.Float)
     light = db.Column(db.Float)
-    dummy = db.Column(db.Float)
 
