@@ -1,7 +1,11 @@
-from sensors import db
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from sensors import db, app
 from sqlalchemy import DateTime
 import datetime
 
+migrate =Migrate(app, db)
 
 class Sensordata(db.Model):
 
@@ -14,4 +18,5 @@ class Sensordata(db.Model):
     temperature = db.Column(db.Float)
     pressure = db.Column(db.Float)
     light = db.Column(db.Float)
+    dummy = db.Column(db.Float)
 

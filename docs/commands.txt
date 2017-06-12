@@ -1,0 +1,7 @@
+Migrate
+
+$ flask db init
+
+After making changes to code:
+$ flask db migrate
+$ flask db upgrade
