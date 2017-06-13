@@ -52,6 +52,7 @@
 
         <thead>
         <tr>
+            <th> DeviceID </th>
             <th>Time</th>
             <th>Temperature  (ºC)</th>
             <th>Pressure (hPa)</th>
@@ -66,7 +67,7 @@
 
         {% for reading in readings %}
             <tr>
-
+                <td> {{ reading.DeviceID }}</td>
                 <td> {{ moment(reading.time).format('MMMM Do YYYY, h:mm:ss a') }}</td>
                 <td> {{ reading.temperature | round(2, 'floor') }}</td>
                 <td> {{ (reading.pressure /100) | round(2, 'floor') }}</td>

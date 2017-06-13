@@ -23,14 +23,11 @@ def visualisation():
 
 
 # return a reading given it's ID
+# requests.get('http://localhost:8080/readings/21').json()
 @app.route('/readings/<reading_id>', methods=['GET'])
 def get_reading(reading_id):
 
     reading = db.session.query(Sensordata).get(reading_id)
-
-    datetime_object = datetime.strptime('Jun 1 2005  1:33PM', '%b %d %Y %I:%M%p')
-
-    print datetime_object
 
     return jsonify({'DateTime': reading.time.strftime('%d/%m/%Y  %H:%M:%S'),
                     'temperature': reading.temperature,
@@ -38,6 +35,7 @@ def get_reading(reading_id):
 
 
 # return a json array of all readings
+# requests.get('http://localhost:8080/readings').json()
 @app.route('/readings', methods=['GET'])
 def get_readings():
 
@@ -77,7 +75,6 @@ def range(start, end):
         data_array.append(reading)
 
     return jsonify(data_array)
-
 
 
 class AddSensorReading(Resource):
