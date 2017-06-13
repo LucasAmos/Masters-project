@@ -25,21 +25,31 @@
 
 <h2>Parallel coordinates </h2>
 
+<script>
+
+
+    function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+// get readings over api
+var readings = JSON.parse(httpGet('http://localhost:8080/readings'))
+
+</script>
 
     <div id="example" class="parcoords" style="width:1500px;height:700px"></div>
 
 <script>
 
+
     var json = '{{data3 | tojson}}';
     var json = JSON.parse(json)
 
-
-
     d3.csv(json, function(error,data){
-
-
-        console.log(json);
-
 
 
     var graph = d3.parcoords()("#example")

@@ -119,4 +119,4 @@ class GetSensorReadings(Resource):
 
 api.add_resource(GetSensorReadings, '/getreadings')
 # example api usage
-# requests.get('http://localhost:8080/getreading'),json()
+# requests.get('http://localhost:8080/getreading').json()
