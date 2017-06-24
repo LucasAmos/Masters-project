@@ -15,4 +15,5 @@ class Sensordata(db.Model):
     pressure = db.Column(db.Float)
     light = db.Column(db.Float)
     DeviceID = db.Column(db.TEXT)
+    voc = db.Column(db.Float)
 

@@ -99,19 +99,21 @@ def reading_latest():
 # add reading and return what was commmitted to the database.
 # requests.post('http://localhost:8080/addreading', data={'temperature': '3', 'pressure': '5', 'light' : '6', 'device': 'PiA'}).json()
 
+
 class AddSensorReading(Resource):
 
     def post(self):
 
-        parser = reqparse.RequestParser()
-        parser.add_argument('device', required=True, help="DeviceID cannot be blank", location='form')
-
         if not 'device' in request.form:
-           abort(400)
+            abort(400)
 
         reading = Sensordata(time=datetime.utcnow(), temperature=request.form['temperature'],
                              pressure=request.form['pressure'],
-                             DeviceID=request.form['device'])
+                             DeviceID=request.form['device'],
+                             light=request.form['light'],
+                             voc=request.form['voc'])
+
+        print (reading.__dict__)
         db.session.add(reading)
         db.session.commit()
 
@@ -120,7 +122,8 @@ class AddSensorReading(Resource):
                 "DateTime": reading.time.strftime('%d/%m/%Y  %H:%M:%S'),
                 'temperature': reading.temperature,
                 'pressure': reading.pressure,
-                'light': reading.light
+                'light': reading.light,
+                'voc': reading.voc
                 }
 
 api.add_resource(AddSensorReading, '/reading')
