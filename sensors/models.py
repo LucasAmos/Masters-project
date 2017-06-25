@@ -14,6 +14,9 @@ class Sensordata(db.Model):
     temperature = db.Column(db.Float)
     pressure = db.Column(db.Float)
     light = db.Column(db.Float)
-    DeviceID = db.Column(db.TEXT)
     voc = db.Column(db.Float)
-
+    DeviceID = db.Column(db.TEXT)
+    dht11 = db.Column(db.Float)
+    dht22 = db.Column(db.Float)
+    uv = db.Column(db.Float)
+    motion = db.Column(db.Float)

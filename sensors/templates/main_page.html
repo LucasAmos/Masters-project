@@ -52,11 +52,16 @@
 
         <thead>
         <tr>
-            <th> DeviceID </th>
+            <th>DeviceID </th>
             <th>Time</th>
             <th>Temperature  (ºC)</th>
             <th>Pressure (hPa)</th>
-            <th>Light</th>
+            <th>VOC</th>
+            <th>DHT11</th>
+            <th>DHT22</th>
+            <th>motion</th>
+            <th>UV</th>
+
         </tr>
         </thead>
 
@@ -69,12 +74,23 @@
             <tr>
                 <td> {{ reading.DeviceID }}</td>
                 <td> {{ moment(reading.time).format('MMMM Do YYYY, h:mm:ss a') }}</td>
-                <td> {{ reading.temperature | round(2, 'floor') }}</td>
-                <td> {{ (reading.pressure /100) | round(2, 'floor') }}</td>
+                <td> {{ reading.temperature  }}</td>
+                <td>
+                        {%  if reading.pressure %}
+                       {{ (reading.pressure /100)}}
+                        {%  else %}
+                            None
+                    {%  endif %}
 
 
-                <td> <a href="#" data-toggle="tooltip" data-placement="top" title={{ ((reading.light / 65535.0) * 100 ) | round(2, 'floor')}}%>{{ reading.light | float}}</a>
-</td>
+                </td>
+                <td> {{ reading.voc }}</td>
+                <td> {{ reading.dht11 }}</td>
+                <td> {{ reading.dht22 }}</td>
+                <td> {{ reading.motion }}</td>
+                <td> {{ reading.uv }}</td>
+
+
 
 
 
