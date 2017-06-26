@@ -1,10 +1,12 @@
+from flask.ext.httpauth import HTTPBasicAuth
 from schemas import ma, Sensordatas_schema
 from flask import render_template, request, jsonify, abort, make_response
 from sensors import app, db
-from models import Sensordata
+from models import Sensordata, User
 from flask_restful import Resource, Api, reqparse, reqparse
 from datetime import datetime
 api = Api(app)
+auth =HTTPBasicAuth()
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -137,6 +139,7 @@ def range(start, end):
 # return the most recent reading in the database
 # requests.get('http://localhost:8080/reading').json()
 @app.route('/reading', methods=['GET'])
+@auth.login_required
 def reading_latest():
     data = db.session.query(Sensordata).order_by(Sensordata.id.desc()).first()
 
@@ -175,12 +178,12 @@ def get_reading_by_id(reading_id):
                     'motion': reading.motion
                     })
 
-# add reading and return what was commmitted to the database.
-# requests.post('http://localhost:8080/addreading', data={'temperature': '3', 'pressure': '5', 'light' : '6', 'device': 'PiA'}).json()
-
 
 class AddSensorReading(Resource):
 
+    # add reading and return what was committed to the database.
+    # requests.post('http://localhost:8080/addreading', data={'temperature': '3', 'pressure': '5', 'light' : '6', 'device': 'PiA'}).json()
+    @auth.login_required
     def post(self):
 
         if not 'device' in request.form:
@@ -216,7 +219,34 @@ class AddSensorReading(Resource):
 api.add_resource(AddSensorReading, '/reading')
 
 
+class AddUser(Resource):
+
+    #add user using the API
+    def post(self):
+
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        user = User(username=username)
+        user.hash_password(password)
+        db.session.add(user)
+        db.session.commit()
+
+        return {'status': 'added'}
+
+
+api.add_resource(AddUser, '/user')
+
+
 # return json encoded 404 error
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
+
+
+@auth.verify_password
+def verify_password(username, password):
+    user = User.query.filter_by(username = username).first()
+    if not user or not user.verify_password(password):
+        return False
+    return True
