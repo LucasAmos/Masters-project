@@ -182,9 +182,7 @@ class AddSensorReading(Resource):
 
         reading = Sensordata(DeviceID=request.form.get("device"),
                              time=datetime.utcnow(),
-                             temperature=request.form.get("temperature"),
                              pressure=request.form.get("pressure"),
-                             light=request.form.get("light"),
                              voc=request.form.get("voc"),
                              dht11=request.form.get("dht11"),
                              dht22=request.form.get("dht22"),
