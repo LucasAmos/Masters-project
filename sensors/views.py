@@ -240,6 +240,6 @@ def verify_password(username, password):
 
 
 @app.route("/docs", methods=["GET", "POST"])
-def index():
+def docs():
 
         return render_template("api.html")
