@@ -130,9 +130,9 @@ def range(start, end):
 
 # return the most recent reading in the database
 # requests.get('http://localhost:8080/reading').json()
-@app.route('/reading', methods=['GET'])
-def reading_latest():
-    data = db.session.query(Sensordata).order_by(Sensordata.id.desc()).first()
+@app.route('/reading/<deviceid>', methods=['GET'])
+def reading_latest(deviceid):
+    data = db.session.query(Sensordata).filter(Sensordata.DeviceID == deviceid).order_by(Sensordata.time.desc()).first()
 
     reading = {'id': data.id,
                     'deviceid': data.DeviceID,
