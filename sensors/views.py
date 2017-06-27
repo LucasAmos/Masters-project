@@ -132,7 +132,7 @@ def range(start, end):
 # requests.get('http://localhost:8080/reading').json()
 @app.route('/reading/<deviceid>', methods=['GET'])
 def reading_latest(deviceid):
-    data = db.session.query(Sensordata).filter(Sensordata.DeviceID == deviceid).order_by(Sensordata.time.desc()).first()
+    data = db.session.query(Sensordata).filter(Sensordata.DeviceID == deviceid).order_by(Sensordata.time.desc()).first_or_404()
 
     reading = {'id': data.id,
                     'deviceid': data.DeviceID,
@@ -147,27 +147,27 @@ def reading_latest(deviceid):
 
     return jsonify(reading)
 
-
-# return a reading given it's ID
-# requests.get('http://localhost:8080/readings/21').json()
-@app.route('/reading/<reading_id>', methods=['GET'])
-def get_reading_by_id(reading_id):
-
-    reading = db.session.query(Sensordata).get(reading_id)
-
-    if reading is None:
-        abort(404)
-
-    return jsonify({'id': reading.id,
-                    'deviceid': reading.DeviceID,
-                    'datetime': reading.time.strftime('%d-%m-%Y  %H:%M:%S'),
-                    'pressure': reading.pressure,
-                    'voc': reading.voc,
-                    'dht11': reading.dht11,
-                    'dht22': reading.dht22,
-                    'uv': reading.uv,
-                    'motion': reading.motion
-                    })
+#
+# # return a reading given it's ID
+# # requests.get('http://localhost:8080/readings/21').json()
+# @app.route('/reading/<reading_id>', methods=['GET'])
+# def get_reading_by_id(reading_id):
+#
+#     reading = db.session.query(Sensordata).get(reading_id)
+#
+#     if reading is None:
+#         abort(404)
+#
+#     return jsonify({'id': reading.id,
+#                     'deviceid': reading.DeviceID,
+#                     'datetime': reading.time.strftime('%d-%m-%Y  %H:%M:%S'),
+#                     'pressure': reading.pressure,
+#                     'voc': reading.voc,
+#                     'dht11': reading.dht11,
+#                     'dht22': reading.dht22,
+#                     'uv': reading.uv,
+#                     'motion': reading.motion
+#                     })
 
 
 class AddSensorReading(Resource):
