@@ -139,18 +139,21 @@ def range(start, end):
 # return the most recent reading in the database
 # requests.get('http://localhost:8080/reading').json()
 @app.route('/reading', methods=['GET'])
-@auth.login_required
 def reading_latest():
     data = db.session.query(Sensordata).order_by(Sensordata.id.desc()).first()
 
     reading = {'id': data.id,
-               'deviceid' : data.DeviceID,
-               "time": data.time.strftime('%d-%m-%Y  %H:%M:%S'),
-               'temperature': data.temperature or None,
-               'pressure': data.pressure or None,
-               'light': data.light or None,
-               'voc': data.voc or None
-               }
+                    'deviceid': data.DeviceID,
+                    'datetime': data.time.strftime('%d-%m-%Y  %H:%M:%S'),
+                    'temperature': data.temperature,
+                    'pressure': data.pressure,
+                    'light': data.light,
+                    'voc': data.voc,
+                    'dht11': data.dht11,
+                    'dht22': data.dht22,
+                    'uv': data.uv,
+                    'motion': data.motion
+                    }
 
     return jsonify(reading)
 
