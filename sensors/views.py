@@ -237,3 +237,9 @@ def verify_password(username, password):
     if not user or not user.verify_password(password):
         return False
     return True
+
+
+@app.route("/docs", methods=["GET", "POST"])
+def index():
+
+        return render_template("api.html")
