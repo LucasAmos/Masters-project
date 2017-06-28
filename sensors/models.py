@@ -19,6 +19,8 @@ class Sensordata(db.Model):
     dht22 = db.Column(db.Float)
     uv = db.Column(db.Float)
     motion = db.Column(db.Float)
+    light = db.Column(db.Float)
+
 
 
 class User(db.Model):

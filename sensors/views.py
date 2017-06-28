@@ -189,7 +189,8 @@ class AddSensorReading(Resource):
                              dht11=request.form.get("dht11"),
                              dht22=request.form.get("dht22"),
                              uv=request.form.get("uv"),
-                             motion=request.form.get("motion"))
+                             motion=request.form.get("motion"),
+                             light=request.form.get("light"))
 
         db.session.add(reading)
         db.session.commit()
@@ -203,7 +204,8 @@ class AddSensorReading(Resource):
                 'dht11': reading.dht11,
                 'dht22': reading.dht22,
                 'uv': reading.uv,
-                'motion': reading.motion
+                'motion': reading.motion,
+                'light': reading.light
                 }
 
 api.add_resource(AddSensorReading, '/reading')
