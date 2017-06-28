@@ -11,6 +11,7 @@ class Sensordata(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     time = db.Column(DateTime, default=dt)
+    humidity = db.Column(db.Float)
     pressure = db.Column(db.Float)
     voc = db.Column(db.Float)
     DeviceID = db.Column(db.TEXT)

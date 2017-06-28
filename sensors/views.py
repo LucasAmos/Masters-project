@@ -137,6 +137,7 @@ def reading_latest(deviceid):
     reading = {'id': data.id,
                     'deviceid': data.DeviceID,
                     'datetime': data.time.strftime('%d-%m-%Y  %H:%M:%S'),
+                    'humidity': data.humidity,
                     'pressure': data.pressure,
                     'voc': data.voc,
                     'dht11': data.dht11,
@@ -182,6 +183,7 @@ class AddSensorReading(Resource):
 
         reading = Sensordata(DeviceID=request.form.get("device"),
                              time=datetime.utcnow(),
+                             humidity=request.form.get("humidity"),
                              pressure=request.form.get("pressure"),
                              voc=request.form.get("voc"),
                              dht11=request.form.get("dht11"),
@@ -195,6 +197,7 @@ class AddSensorReading(Resource):
         return {'id': reading.id,
                 'deviceid' : reading.DeviceID,
                 "datetime": reading.time.strftime('%d/%m/%Y  %H:%M:%S'),
+                'humidity': reading.humidity,
                 'pressure': reading.pressure,
                 'voc': reading.voc,
                 'dht11': reading.dht11,
