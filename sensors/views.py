@@ -21,7 +21,7 @@ def visualisation():
     readings = Sensordata.query.all()
     data, errors = Sensordatas_schema.dump(readings)
 
-    return render_template("visualisation.html", data3=data)
+    return render_template("visualisation2.html", data3=data)
 
 
 # return a json array of all readings
