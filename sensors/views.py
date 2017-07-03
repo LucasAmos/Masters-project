@@ -23,7 +23,12 @@ def index():
 
 @app.route("/visualisation")
 def visualisation():
-    readings = db.session.query(Sensordata).filter(Sensordata.voc is not None, Sensordata.voc > 0).order_by(Sensordata.time.desc()).limit(2400).all()
+    readings = db.session.query(Sensordata).filter(
+        Sensordata.voc is not None,
+        Sensordata.voc > 0,
+        Sensordata.dht22 is not None,
+        Sensordata.dht22 > 0
+    ).order_by(Sensordata.time.desc()).limit(2400).all()
     data, errors = Sensordatas_schema.dump(readings)
 
     return render_template('visualisation3.html', data3 = data)
