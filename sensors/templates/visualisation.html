@@ -23,7 +23,6 @@
 <body>
 
 
-
 <h2>Parallel coordinates </h2>
 
 <script>
@@ -49,9 +48,6 @@
 
     var json = '{{data3 | tojson}}';
     var json = JSON.parse(json)
-
-    console.log(json)
-    console.log(json.length)
 
     d3.csv(json, function(error,data){
 

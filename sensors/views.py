@@ -5,8 +5,15 @@ from sensors import app, db
 from models import Sensordata, User
 from flask_restful import Resource, Api, reqparse, reqparse
 from datetime import datetime
+
+import json
+import plotly
+import pandas as pd
+import numpy as np
+
 api = Api(app)
 auth =HTTPBasicAuth()
+
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -18,10 +25,10 @@ def index():
 
 @app.route("/visualisation")
 def visualisation():
-    readings = Sensordata.query.limit(1440).all()
+    readings = Sensordata.query.limit(60).all()
     data, errors = Sensordatas_schema.dump(readings)
 
-    return render_template("visualisation.html", data3=data)
+    return render_template('visualisation3.html', data3 = data)
 
 
 # return a json array of all readings
