@@ -7,7 +7,7 @@ ma = Marshmallow()
 class SensordataSchema(ma.Schema):
     class Meta:
         # fields = ('time','temperature', 'pressure', 'light')
-        fields = ('dht22', 'voc', 'light')
+        fields = ('time', 'dht22', 'voc', 'light')
 
         model = Sensordata
 
