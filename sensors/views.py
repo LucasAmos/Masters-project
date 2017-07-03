@@ -15,12 +15,12 @@ auth =HTTPBasicAuth()
 def index():
     if request.method == "GET":
 
-        return render_template("main_page.html", readings=Sensordata.query.order_by(Sensordata.time.desc()).limit(2400).all())
+        return render_template("main_page.html", readings=Sensordata.query.order_by(Sensordata.time.desc()).limit(60).all())
 
 
 @app.route("/visualisation")
 def visualisation():
-    readings = Sensordata.query.limit(60).all()
+    readings = Sensordata.query.limit(2400).all()
     data, errors = Sensordatas_schema.dump(readings)
 
     return render_template('visualisation3.html', data3 = data)
