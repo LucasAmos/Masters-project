@@ -18,7 +18,7 @@ def index():
 
 @app.route("/visualisation")
 def visualisation():
-    readings = Sensordata.query.all()
+    readings = Sensordata.query.limit(60).all()
     data, errors = Sensordatas_schema.dump(readings)
 
     return render_template("visualisation.html", data3=data)
