@@ -43,13 +43,6 @@ var svg = d3.select("body").append("svg")
           "translate(" + margin.left + "," + margin.top + ")");
 // Get the data
 
-    var json = '{{data3 | tojson}}';
-    var json = JSON.parse(json)
-console.log(json)
-
-d3.json(json, function(error, data) {
-
-})
 
 
 d3.csv("static/data.csv", function(error, data) {
@@ -75,5 +68,17 @@ d3.csv("static/data.csv", function(error, data) {
   svg.append("g")
       .call(d3.axisLeft(y));
 });
+</script>
+
+
+<script>
+    var json = '{{data3 | tojson}}';
+    var json = JSON.parse(json)
+    console.log(json)
+
+d3.csv(json, function(error, data) {
+
+})
+
 </script>
 </body>
