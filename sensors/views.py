@@ -6,11 +6,6 @@ from models import Sensordata, User
 from flask_restful import Resource, Api, reqparse, reqparse
 from datetime import datetime
 
-import json
-import plotly
-import pandas as pd
-import numpy as np
-
 api = Api(app)
 auth =HTTPBasicAuth()
 
