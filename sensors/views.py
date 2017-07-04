@@ -22,16 +22,16 @@ def index():
 
 @app.route("/visualisation")
 def visualisation():
-    readings = db.session.query(Sensordata).filter(
+    readings1 = db.session.query(Sensordata).filter(
         Sensordata.voc is not None,
         Sensordata.voc > 0,
         Sensordata.dht22 is not None,
         Sensordata.dht22 > 0
-    ).order_by(Sensordata.time.desc()).limit(2400).all()
+    ).order_by(Sensordata.time.desc()).limit(2880).all()
 
-    data, errors = Sensordatas_schema.dump(readings)
+    data1, errors1 = Sensordatas_schema.dump(readings1)
 
-    return render_template('visualisation.html', data3 = data)
+    return render_template('visualisation.html', data3=data1)
 
 
 # return a json array of all readings

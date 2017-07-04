@@ -9,6 +9,8 @@ class SensordataSchema(ma.Schema):
         voc = fields.Str(attribute="voc")
         date = fields.DateTime(attribute="time")
         dht22 = fields.Str(attribute="dht22")
+        dht11 = fields.Str(attribute="dht11")
+        device = fields.Str(attribute="DeviceID")
         humidity = fields.Str(attribute="humidity")
 
 
