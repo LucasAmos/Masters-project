@@ -12,7 +12,7 @@
 </style>
 <body>
 
-{{  data }}
+
 
 <!-- load the d3.js library -->
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -166,13 +166,14 @@
     svg.append("path")
         .data([data])
         .attr("class", "line")
+        .style("stroke", "red")
         .attr("d", valueline3);
 
     // Add the valueline2 path.
     svg.append("path")
         .data([data])
         .attr("class", "line")
-        .style("stroke", "red")
+        .style("stroke", "black")
         .attr("d", valueline4);
 
     // Add the X Axis
@@ -194,14 +195,9 @@
 
 
 
-    //y axis label
-    svg.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left)
-        .attr("x", 0 - (height /2))
-        .attr("dy", "1em")
-        .style("text-anchor", "middle")
-        .text("Value");
+
+
+
 
 
 </script>
