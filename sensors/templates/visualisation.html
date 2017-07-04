@@ -8,6 +8,7 @@
     stroke-width: 2px;
 }
 
+
 </style>
 <body>
 
@@ -50,7 +51,7 @@
     // define the 2nd line
     var valueline4 = d3.line()
         .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(d.dht22); });
+        .y(function(d) { return y(d.humidity); });
 
     // append the svg obgect to the body of the page
     // appends a 'group' element to 'svg'
@@ -69,7 +70,7 @@
     data.forEach(function(d) {
         d.date = parseTime(d.date);
         d.voc = +d.voc;
-        d.dht22 = +d.dht22;
+        d.dht22 = +d.humidity;
     });
 
     // Scale the range of the data
