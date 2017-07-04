@@ -18,7 +18,6 @@ def index():
         return render_template("main_page.html",
                                readings=db.session.query(Sensordata).order_by(Sensordata.time.desc()).limit(60).all())
 
-    # sensordata = db.session.query(Sensordata).filter(Sensordata.time >= start, Sensordata.time <= end, Sensordata.DeviceID == deviceid).all()
 
 
 @app.route("/visualisation")
@@ -29,9 +28,10 @@ def visualisation():
         Sensordata.dht22 is not None,
         Sensordata.dht22 > 0
     ).order_by(Sensordata.time.desc()).limit(2400).all()
+
     data, errors = Sensordatas_schema.dump(readings)
 
-    return render_template('visualisation3.html', data3 = data)
+    return render_template('visualisation.html', data3 = data)
 
 
 # return a json array of all readings
@@ -145,16 +145,16 @@ def reading_latest(deviceid):
     data = db.session.query(Sensordata).filter(Sensordata.DeviceID == deviceid).order_by(Sensordata.time.desc()).first_or_404()
 
     reading = {'id': data.id,
-                    'deviceid': data.DeviceID,
-                    'datetime': data.time.strftime('%d-%m-%Y  %H:%M:%S'),
-                    'humidity': data.humidity,
-                    'pressure': data.pressure,
-                    'voc': data.voc,
-                    'dht11': data.dht11,
-                    'dht22': data.dht22,
-                    'uv': data.uv,
-                    'motion': data.motion
-                    }
+               'deviceid': data.DeviceID,
+               'datetime': data.time.strftime('%d-%m-%Y  %H:%M:%S'),
+               'humidity': data.humidity,
+               'pressure': data.pressure,
+               'voc': data.voc,
+               'dht11': data.dht11,
+               'dht22': data.dht22,
+               'uv': data.uv,
+               'motion': data.motion
+               }
 
     return jsonify(reading)
 
@@ -257,4 +257,4 @@ def verify_password(username, password):
 @app.route("/docs", methods=["GET", "POST"])
 def docs():
 
-        return render_template("api.html")
+    return render_template("api.html")

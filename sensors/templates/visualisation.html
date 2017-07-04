@@ -1,66 +1,182 @@
-<html>
-<head>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style> /* set the CSS */
 
-    <link href="../static/css/styles.css" rel="stylesheet">
-
-    <script type="text/javascript" src="../static/libraries/d3.v3.min.js"></script>
-
-
-    <script src="./static/libraries/d3.parcoords.js"></script>
-    <link rel="stylesheet" type="text/css" href="./static/libraries/d3.parcoords.css">
-
-
-
-    <title> Environment visualisation </title>
-
-    <style>
-        p{
-            font-family: sans-serif;
-            color: grey;
-        }
-    </style>
-</head>
-<body>
-
-
-<h2>Parallel coordinates </h2>
-
-<script>
-
-
-    function httpGet(theUrl)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
 }
 
-// get readings over api
-//var readings = JSON.parse(httpGet('http://localhost:8080/readings'))
+</style>
+<body>
 
-</script>
+{{  data }}
 
-    <div id="example" class="parcoords" style="width:1500px;height:700px"></div>
+<!-- load the d3.js library -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
 
 <script>
 
+    var data = '{{data3 | tojson}}';
+    var data = JSON.parse(data)
 
-    var json = '{{data3 | tojson}}';
-    var json = JSON.parse(json)
-
-    d3.csv(json, function(error,data){
-
-
-    var graph = d3.parcoords()("#example")
-        .data(json)
-        .render()
-        .ticks(3)
-        .createAxes()
-        .reorderable();
-    })
+    console.log(data)
 
 </script>
 
+<script>
+
+    // set the dimensions and margins of the graph
+    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    // parse the date / time
+    var parseTime = d3.timeParse("%Y-%m-%dT%H:%M:%S%Z");
+
+    // set the ranges
+    var x = d3.scaleTime().range([0, width]);
+    var y = d3.scaleLinear().range([height, 0]);
+
+    // define the 1st line
+    var valueline3 = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.voc); });
+
+    // define the 2nd line
+    var valueline4 = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.dht22); });
+
+    // append the svg obgect to the body of the page
+    // appends a 'group' element to 'svg'
+    // moves the 'group' element to the top left margin
+    var svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+
+
+    // format the data
+    data.forEach(function(d) {
+        d.date = parseTime(d.date);
+        d.voc = +d.voc;
+        d.dht22 = +d.dht22;
+    });
+
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.date; }));
+    y.domain([0, d3.max(data, function(d) {
+        return Math.max(d.voc, d.dht22); })]);
+
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline3);
+
+    // Add the valueline2 path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .style("stroke", "red")
+        .attr("d", valueline4);
+
+    // Add the X Axis
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+    // Add the Y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+
+</script>
+
+
+
+
+
+
+<script>
+
+    var data2 = '{{data3 | tojson}}';
+    var data2 = JSON.parse(data2)
+
+    console.log(data2)
+
+
+    // set the dimensions and margins of the graph
+    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    // parse the date / time
+    var parseTime = d3.timeParse("%Y-%m-%dT%H:%M:%S%Z");
+
+    // set the ranges
+    var x = d3.scaleTime().range([0, width]);
+    var y = d3.scaleLinear().range([height, 0]);
+
+
+    // define the 2nd line
+    var valueline4 = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.dht22); });
+
+    // append the svg obgect to the body of the page
+    // appends a 'group' element to 'svg'
+    // moves the 'group' element to the top left margin
+    var svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+
+
+    // format the data
+    data2.forEach(function(d) {
+        d.date = parseTime(d.date);
+        d.voc = +d.voc;
+        d.dht22 = +d.dht22;
+    });
+
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.date; }));
+    y.domain([0, d3.max(data, function(d) {
+        return Math.max(d.dht22, d.dht22); })]);
+
+
+
+    // Add the valueline2 path.
+    svg.append("path")
+        .data([data2])
+        .attr("class", "line")
+        .style("stroke", "red")
+        .attr("d", valueline4);
+
+    // Add the X Axis
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+    // Add the Y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+
+</script>
+
+
+
+
+
 </body>
-</html>
