@@ -37,9 +37,6 @@
     var JHLab = '{{JHLab | tojson}}';
     var JHLab = JSON.parse(JHLab)
 
-    console.log(JHLab)
-    console.log(JCLab)
-    console.log(data)
 
     // set the dimensions and margins of the graph
     var margin = {top: 40, right: 20, bottom: 30, left: 50},
@@ -63,7 +60,7 @@
         .x(function(d) { return x(d.date); })
         .y(function(d) { return y(d.voc); });
 
-     // define the 5th line
+    // define the 5th line
     var valueline5 = d3.line()
         .x(function(d) { return x(d.date); })
         .y(function(d) { return y(d.voc); });
@@ -87,13 +84,13 @@
         d.voc = +d.voc;
     });
 
-     // format the data
+    // format the data
     JCLab.forEach(function(d) {
         d.date = parseTime(d.date);
         d.voc = +d.voc;
     });
 
-       // format the data
+    // format the data
     JHLab.forEach(function(d) {
         d.date = parseTime(d.date);
         d.voc = +d.voc;
@@ -101,14 +98,13 @@
 
     var allData = data.concat(JCLab.concat(JHLab))
 
-    console.log(allData)
 
     // Scale the range of the data
     x.domain(d3.extent(allData, function(d) { return d.date; }));
     y.domain([0, d3.max(allData, function(d) {
         return Math.max(d.voc); })]);
 
-      // Add the green path.
+    // Add the green path.
     svg.append("path")
         .data([data])
         .attr("class", "line")
@@ -258,9 +254,128 @@
 
 </script>
 
+{#temperatures#}
+
+<script>
+
+    var JCCoffee = '{{JCCoffee | tojson}}';
+    var JCCoffee = JSON.parse(JCCoffee)
+
+    var JCLab = '{{JCLab | tojson}}';
+    var JCLab = JSON.parse(JCLab)
+
+    var JHLab = '{{JHLab | tojson}}';
+    var JHLab = JSON.parse(JHLab)
+
+    console.log(JHLab)
+    console.log(JCLab)
+    console.log(JCCoffee)
+
+    // set the dimensions and margins of the graph
+    var margin = {top: 40, right: 20, bottom: 30, left: 50},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    // parse the date / time
+    var parseTime = d3.timeParse("%Y-%m-%dT%H:%M:%S%Z");
+
+    // set the ranges
+    var x = d3.scaleTime().range([0, width]);
+    var y = d3.scaleLinear().range([height, 0]);
+
+    // define the 1st line
+    var valueline8 = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.dht22); });
+
+    // define the 2nd line
+    var valueline9 = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.dht11); });
+
+    // define the 5th line
+    var valueline10 = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.dht11); });
+
+    // append the svg obgect to the body of the page
+    // appends a 'group' element to 'svg'
+    // moves the 'group' element to the top left margin
+    var svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
 
 
+    // format the data
+    JCCoffee.forEach(function(d) {
+        d.date = parseTime(d.date);
+        d.voc = +d.dht22;
+    });
 
+    // format the data
+    JCLab.forEach(function(d) {
+        d.date = parseTime(d.date);
+        d.voc = +d.dht11;
+    });
 
+    // format the data
+    JHLab.forEach(function(d) {
+        d.date = parseTime(d.date);
+        d.voc = +d.dht11;
+    });
+
+    var allData = data.concat(JCLab.concat(JHLab))
+
+    console.log(allData)
+
+    // Scale the range of the data
+    x.domain(d3.extent(allData, function(d) { return d.date; }));
+    y.domain([0, d3.max(allData, function(d) {
+        return Math.max(40); })]);
+
+    // Add the green path.
+    svg.append("path")
+        .data([JCCoffee])
+        .attr("class", "line")
+        .style("stroke", "green")
+        .attr("d", valueline8);
+
+    // Add the blue path.
+    svg.append("path")
+        .data([JCLab])
+        .attr("class", "line")
+        .style("stroke", "blue")
+        .attr("d", valueline9);
+
+    // Add the red path.
+    svg.append("path")
+        .data([JHLab])
+        .attr("class", "line")
+        .style("stroke", "red")
+        .attr("d", valueline10);
+
+    // Add the X Axis
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+    // Add the Y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+
+    //x chart label
+    svg.append("text")
+        .attr("transform",
+            "translate(" + (width/2) + " ," +
+            (-20) + ")")
+        .style("text-anchor", "middle")
+        .text("VOC and temperature relationship");
+
+</script>
 
 </body>
