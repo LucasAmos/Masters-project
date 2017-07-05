@@ -335,8 +335,9 @@
 
     // Scale the range of the data
     x.domain(d3.extent(allData, function(d) { return d.date; }));
-    y.domain([0, d3.max(allData, function(d) {
-        return Math.max(40); })]);
+    y.domain([d3.min(allData, function(d) {
+        return Math.max(d.dht22, d.dht11); }), d3.max(allData, function(d) {
+        return Math.max(d.dht22, d.dht11); })]);
 
     // Add the green path.
     svg.append("path")
