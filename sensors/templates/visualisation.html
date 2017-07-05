@@ -339,13 +339,6 @@
         return Math.max(d.dht22, d.dht11); }), d3.max(allData, function(d) {
         return Math.max(d.dht22, d.dht11); })]);
 
-    // Add the green path.
-    svg.append("path")
-        .data([JCCoffee])
-        .attr("class", "line")
-        .style("stroke", "green")
-        .attr("d", valueline8);
-
     // Add the blue path.
     svg.append("path")
         .data([JCLab])
@@ -359,6 +352,14 @@
         .attr("class", "line")
         .style("stroke", "red")
         .attr("d", valueline10);
+
+    // Add the green path.
+    svg.append("path")
+        .data([JCCoffee])
+        .attr("class", "line")
+        .style("stroke", "green")
+        .attr("d", valueline8);
+
 
     // Add the X Axis
     svg.append("g")
@@ -375,7 +376,7 @@
             "translate(" + (width/2) + " ," +
             (-20) + ")")
         .style("text-anchor", "middle")
-        .text("VOC and temperature relationship");
+        .text("Temperatures");
 
 </script>
 
