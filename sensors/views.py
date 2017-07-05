@@ -23,15 +23,38 @@ def index():
 @app.route("/visualisation")
 def visualisation():
     readings1 = db.session.query(Sensordata).filter(
+        Sensordata.DeviceID == "PiJCCoffee",
         Sensordata.voc is not None,
         Sensordata.voc > 0,
         Sensordata.dht22 is not None,
         Sensordata.dht22 > 0
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
-    data1, errors1 = Sensordatas_schema.dump(readings1)
+    JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
 
-    return render_template('visualisation.html', data3=data1)
+    readings2 = db.session.query(Sensordata).filter(
+        Sensordata.DeviceID == "PiJCLabRear",
+        Sensordata.voc is not None,
+        Sensordata.voc > 0,
+        Sensordata.dht11 is not None,
+        Sensordata.dht11 > 0
+    ).order_by(Sensordata.time.desc()).limit(2880).all()
+
+    JCLab, errors2 = Sensordatas_schema.dump(readings2)
+
+    readings2 = db.session.query(Sensordata).filter(
+        Sensordata.DeviceID == "PiJHLabDoor",
+        Sensordata.voc is not None,
+        Sensordata.voc > 0,
+        Sensordata.dht11 is not None,
+        Sensordata.dht11 > 0
+    ).order_by(Sensordata.time.desc()).limit(2880).all()
+
+    JHLab, errors2 = Sensordatas_schema.dump(readings2)
+    print(JHLab)
+
+    return render_template('visualisation.html', JCCoffee=JCCoffee, JCLab=JCLab, JHLab=JHLab)
+
 
 
 # return a json array of all readings

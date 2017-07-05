@@ -12,6 +12,7 @@ class SensordataSchema(ma.Schema):
         dht11 = fields.Str(attribute="dht11")
         device = fields.Str(attribute="DeviceID")
         humidity = fields.Str(attribute="humidity")
+        light = fields.Str(attribute="light")
 
 
         model = Sensordata
