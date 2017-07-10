@@ -27,7 +27,8 @@ def visualisation():
         Sensordata.voc is not None,
         Sensordata.voc > 0,
         Sensordata.dht22 is not None,
-        Sensordata.dht22 > 0
+        Sensordata.dht22 > 0,
+        Sensordata.dht22 <= 100
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
@@ -37,20 +38,22 @@ def visualisation():
         Sensordata.voc is not None,
         Sensordata.voc > 0,
         Sensordata.dht11 is not None,
-        Sensordata.dht11 > 0
+        Sensordata.dht11 > 0,
+        Sensordata.dht11 <= 100
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
     JCLab, errors2 = Sensordatas_schema.dump(readings2)
 
-    readings2 = db.session.query(Sensordata).filter(
+    readings3 = db.session.query(Sensordata).filter(
         Sensordata.DeviceID == "PiJHLabDoor",
         Sensordata.voc is not None,
         Sensordata.voc > 0,
         Sensordata.dht11 is not None,
-        Sensordata.dht11 > 0
+        Sensordata.dht11 > 0,
+        Sensordata.dht11 <= 100
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
-    JHLab, errors2 = Sensordatas_schema.dump(readings2)
+    JHLab, errors3 = Sensordatas_schema.dump(readings3)
     print(JHLab)
 
     return render_template('visualisation.html', JCCoffee=JCCoffee, JCLab=JCLab, JHLab=JHLab)
