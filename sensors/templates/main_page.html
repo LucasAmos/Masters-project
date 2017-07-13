@@ -55,6 +55,7 @@
             <th>DeviceID </th>
             <th>Time</th>
             <th>Pressure (hPa)</th>
+            <th>CO2</th>
             <th>VOC</th>
             <th>DHT11</th>
             <th>DHT22</th>
@@ -76,6 +77,7 @@
                 <td> {{ reading.DeviceID }}</td>
                 <td> {{ moment(reading.time).format('MMMM Do YYYY, h:mm:ss a') }}</td>
                 <td> {{ reading.pressure }}</td>
+                <td> {{ reading.co2 }}</td>
                 <td> {{ reading.voc }}</td>
                 <td> {{ reading.dht11 }}</td>
                 <td> {{ reading.dht22 }}</td>

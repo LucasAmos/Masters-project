@@ -6,6 +6,7 @@ ma = Marshmallow()
 
 class SensordataSchema(ma.Schema):
 
+        co2 = fields.Str(attribute="co2")
         voc = fields.Str(attribute="voc")
         date = fields.DateTime(attribute="time")
         dht22 = fields.Str(attribute="dht22")

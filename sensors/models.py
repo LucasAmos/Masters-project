@@ -20,6 +20,7 @@ class Sensordata(db.Model):
     uv = db.Column(db.Float)
     motion = db.Column(db.Float)
     light = db.Column(db.Float)
+    co2 = db.Column(db.Float)
 
 
 
