@@ -4,7 +4,7 @@ from flask import render_template, request, jsonify, abort, make_response
 from sensors import app, db
 from models import Sensordata, User
 from flask_restful import Resource, Api, reqparse, reqparse
-from datetime import datetime
+from datetime import datetime, timedelta
 
 api = Api(app)
 auth =HTTPBasicAuth()
@@ -187,28 +187,6 @@ def reading_latest(deviceid):
 
     return jsonify(reading)
 
-#
-# # return a reading given it's ID
-# # requests.get('http://localhost:8080/readings/21').json()
-# @app.route('/reading/<reading_id>', methods=['GET'])
-# def get_reading_by_id(reading_id):
-#
-#     reading = db.session.query(Sensordata).get(reading_id)
-#
-#     if reading is None:
-#         abort(404)
-#
-#     return jsonify({'id': reading.id,
-#                     'deviceid': reading.DeviceID,
-#                     'datetime': reading.time.strftime('%d-%m-%Y  %H:%M:%S'),
-#                     'pressure': reading.pressure,
-#                     'voc': reading.voc,
-#                     'dht11': reading.dht11,
-#                     'dht22': reading.dht22,
-#                     'uv': reading.uv,
-#                     'motion': reading.motion
-#                     })
-
 
 class AddSensorReading(Resource):
 
@@ -289,3 +267,22 @@ def verify_password(username, password):
 def docs():
 
     return render_template("api.html")
+
+
+#route to return visualisation of two hours data for specified device as a visualisation
+@app.route('/hourvisualisation/<deviceid>/<start>/<end>', methods=['GET'])
+def hourvisualisation(deviceid, start, end):
+    start = datetime.strptime(start, '%d-%m-%Y %H:%M:%S')
+    end = start + timedelta(hours=3)
+
+    readings = db.session.query(Sensordata).filter(
+        Sensordata.time >= start,
+        Sensordata.time <= end,
+        Sensordata.DeviceID == deviceid
+    ).order_by(Sensordata.time.asc()).limit(2880).all()
+
+    print (len(readings))
+
+    data, errors1 = Sensordatas_schema.dump(readings)
+
+    return render_template('hourvisualisation.html', data=data)
