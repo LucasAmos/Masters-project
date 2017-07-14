@@ -59,7 +59,6 @@
 
     });
 
-    console.log(array)
 
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.date; }));
@@ -117,6 +116,7 @@
 
     var data = '{{data | tojson}}';
     var data = JSON.parse(data)
+
 
 
     // set the dimensions and margins of the graph
@@ -200,6 +200,7 @@
         .style("text-anchor", "middle")
         .text("Temperature plot");
 
+        document.write(array)
 
 </script>
 
