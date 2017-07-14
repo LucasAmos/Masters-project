@@ -270,8 +270,8 @@ def docs():
 
 
 #route to return visualisation of two hours data for specified device as a visualisation
-@app.route('/hourvisualisation/<deviceid>/<start>/<end>', methods=['GET'])
-def hourvisualisation(deviceid, start, end):
+@app.route('/hourvisualisation/<deviceid>/<start>', methods=['GET'])
+def hourvisualisation(deviceid, start):
     start = datetime.strptime(start, '%d-%m-%Y %H:%M:%S')
     end = start + timedelta(hours=3)
 
