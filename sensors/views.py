@@ -29,7 +29,7 @@ def visualisation():
         Sensordata.dht22 is not None,
         Sensordata.dht22 > 0,
         Sensordata.dht22 <= 100
-    ).order_by(Sensordata.time.desc()).limit(2880).all()
+    ).order_by(Sensordata.time.asc()).limit(2880).all()
 
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
 
@@ -54,7 +54,6 @@ def visualisation():
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
     JHLab, errors3 = Sensordatas_schema.dump(readings3)
-    print(JHLab)
 
     return render_template('visualisation.html', JCCoffee=JCCoffee, JCLab=JCLab, JHLab=JHLab)
 
