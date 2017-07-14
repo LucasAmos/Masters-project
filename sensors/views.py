@@ -273,7 +273,7 @@ def docs():
 @app.route('/hourvisualisation/<deviceid>/<start>', methods=['GET'])
 def hourvisualisation(deviceid, start):
     start = datetime.strptime(start, '%d-%m-%Y %H:%M:%S')
-    end = start + timedelta(hours=3)
+    end = start + timedelta(hours=5)
 
     readings = db.session.query(Sensordata).filter(
         Sensordata.time >= start,
