@@ -24,15 +24,21 @@ def index():
 @app.route("/visualisation")
 def visualisation():
 
+    start = datetime.now() - timedelta(hours=48)
+    end = datetime.now()
 
     readings1 = db.session.query(Sensordata).filter(
+        Sensordata.time >= start,
+        Sensordata.time <= end,
         Sensordata.DeviceID == "PiJCCoffee",
         Sensordata.voc is not None,
         Sensordata.voc > 0,
         Sensordata.dht22 is not None,
         Sensordata.dht22 > 0,
         Sensordata.dht22 <= 100
-    ).order_by(Sensordata.time.desc()).limit(2880).all()
+    ).order_by(Sensordata.time.asc()).all()
+
+
 
     # JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
     # JCCoffee = correctfault(JCCoffee)
@@ -67,8 +73,6 @@ def visualisation():
 
     JHLab, errors3 = Sensordatas_schema.dump(readings3)
 
-    print (JCLab)
-    print (JHLab)
 
     return render_template('visualisation.html', JCCoffee=JCCoffee, JHLab=JHLab, JCLab=JCLab)
 
@@ -302,7 +306,7 @@ def hourvisualisation(deviceid, start):
         Sensordata.time >= start,
         Sensordata.time <= end,
         Sensordata.DeviceID == deviceid
-    ).order_by(Sensordata.time.asc()).limit(2880).all()
+    ).order_by(Sensordata.time.asc()).all()
 
 
     data, errors1 = Sensordatas_schema.dump(readings)
