@@ -38,8 +38,6 @@ def visualisation():
         Sensordata.dht22 <= 100
     ).order_by(Sensordata.time.asc()).all()
 
-
-
     # JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
     # JCCoffee = correctfault(JCCoffee)
 
@@ -48,6 +46,9 @@ def visualisation():
     # ).order_by(Sensordata.time.asc()).limit(2880).all()
 
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
+
+    JCCoffee = correctfault(JCCoffee)
+
 
 
 
@@ -168,13 +169,6 @@ def range(start, end):
 
     sensordata = db.session.query(Sensordata).filter(Sensordata.time >= start, Sensordata.time <= end).order_by(Sensordata.time.asc()).all()
     data_array = []
-
-    for data in sensordata:
-
-        print(data.id)
-        print(data.time)
-        print("\n")
-
 
     for data in sensordata:
         reading = {'id': data.id,
