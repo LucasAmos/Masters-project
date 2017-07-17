@@ -45,7 +45,7 @@ def visualisation():
 
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
 
-    JCCoffee = correctfault(JCCoffee)
+    #JCCoffee = correctfault(JCCoffee)
 
 
 
