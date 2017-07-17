@@ -34,15 +34,14 @@ def visualisation():
         Sensordata.dht22 <= 100
     ).order_by(Sensordata.time.asc()).limit(2880).all()
 
-    JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
-    JCCoffee = correctfault(JCCoffee)
+    # JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
+    # JCCoffee = correctfault(JCCoffee)
 
     # readings1 = db.session.query(Sensordata).filter(
     #     Sensordata.DeviceID == "PiJCCoffee"
     # ).order_by(Sensordata.time.asc()).limit(2880).all()
 
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
-    JCCoffee = JCCoffee
 
 
 
