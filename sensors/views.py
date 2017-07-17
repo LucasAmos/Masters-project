@@ -5,6 +5,7 @@ from sensors import app, db
 from models import Sensordata, User
 from flask_restful import Resource, Api, reqparse, reqparse
 from datetime import datetime, timedelta
+from faultDetection.faultDetector import correctfault
 
 api = Api(app)
 auth =HTTPBasicAuth()
@@ -22,16 +23,28 @@ def index():
 
 @app.route("/visualisation")
 def visualisation():
+
+
+    # readings1 = db.session.query(Sensordata).filter(
+    #     Sensordata.DeviceID == "PiJCCoffee",
+    #     Sensordata.voc is not None,
+    #     Sensordata.voc > 0,
+    #     Sensordata.dht22 is not None,
+    #     Sensordata.dht22 > 0,
+    #     Sensordata.dht22 <= 100
+    # ).order_by(Sensordata.time.asc()).limit(2880).all()
+    #
+    # JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
+    # JCCoffee = correctfault(JCCoffee)
+
     readings1 = db.session.query(Sensordata).filter(
-        Sensordata.DeviceID == "PiJCCoffee",
-        Sensordata.voc is not None,
-        Sensordata.voc > 0,
-        Sensordata.dht22 is not None,
-        Sensordata.dht22 > 0,
-        Sensordata.dht22 <= 100
+        Sensordata.DeviceID == "PiJCCoffee"
     ).order_by(Sensordata.time.asc()).limit(2880).all()
 
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
+    JCCoffee = correctfault(JCCoffee)
+
+
 
     readings2 = db.session.query(Sensordata).filter(
         Sensordata.DeviceID == "PiJCLabRear",
@@ -55,7 +68,10 @@ def visualisation():
 
     JHLab, errors3 = Sensordatas_schema.dump(readings3)
 
-    return render_template('visualisation.html', JCCoffee=JCCoffee, JCLab=JCLab, JHLab=JHLab)
+    print (JCLab)
+    print (JHLab)
+
+    return render_template('visualisation.html', JCCoffee=JCCoffee, JHLab=JHLab, JCLab=JCLab)
 
 
 
@@ -147,8 +163,15 @@ def range(start, end):
     start = datetime.strptime(start, '%d-%m-%Y %H:%M:%S')
     end = datetime.strptime(end, '%d-%m-%Y %H:%M:%S')
 
-    sensordata = db.session.query(Sensordata).filter(Sensordata.time >= start, Sensordata.time <= end).all()
+    sensordata = db.session.query(Sensordata).filter(Sensordata.time >= start, Sensordata.time <= end).order_by(Sensordata.time.asc()).all()
     data_array = []
+
+    for data in sensordata:
+
+        print(data.id)
+        print(data.time)
+        print("\n")
+
 
     for data in sensordata:
         reading = {'id': data.id,
@@ -163,6 +186,7 @@ def range(start, end):
                    'motion': data.motion
                    }
         data_array.append(reading)
+
 
     return jsonify(data_array)
 
@@ -281,7 +305,6 @@ def hourvisualisation(deviceid, start):
         Sensordata.DeviceID == deviceid
     ).order_by(Sensordata.time.asc()).limit(2880).all()
 
-    print (len(readings))
 
     data, errors1 = Sensordatas_schema.dump(readings)
 
