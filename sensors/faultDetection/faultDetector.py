@@ -1,7 +1,8 @@
+from datetime import  datetime
 
 def correctfault(readings):
 
-
+    start = datetime.now()
 
 
     # do not iterate over the first and last elements
@@ -62,6 +63,8 @@ def correctfault(readings):
             elif 50 < float(readings[idx + 1]['dht11']) - float(readings[idx + 2]['dht11']) > 5:
                 readings[idx + 2]['dht11'] = float(readings[idx + 1]['dht11'])
 
+    end = datetime.now()
 
+    print((end - start).total_seconds())
 
     return readings

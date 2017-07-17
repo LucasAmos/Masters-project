@@ -82,7 +82,6 @@ def visualisation():
 @app.route('/readings', methods=['GET'])
 def readings():
 
-    start = datetime.now()
 
     sensordata = Sensordata.query.order_by(Sensordata.id.desc())
     data_array = []
@@ -102,9 +101,7 @@ def readings():
                    }
         data_array.append(reading)
 
-        end = datetime.now()
 
-        print((end - start).total_seconds())
 
     return jsonify(data_array)
 
