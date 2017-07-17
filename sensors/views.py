@@ -73,6 +73,8 @@ def visualisation():
     JHLab, errors3 = Sensordatas_schema.dump(readings3)
 
 
+
+
     return render_template('visualisation.html', JCCoffee=JCCoffee, JHLab=JHLab, JCLab=JCLab)
 
 
