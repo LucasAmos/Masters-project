@@ -33,9 +33,7 @@ def visualisation():
         Sensordata.DeviceID == "PiJCCoffee",
         Sensordata.voc is not None,
         Sensordata.voc > 0,
-        Sensordata.dht22 is not None,
-        Sensordata.dht22 > 0,
-        Sensordata.dht22 <= 100
+        Sensordata.dht22 is not None
     ).order_by(Sensordata.time.asc()).all()
 
     # JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
@@ -47,7 +45,7 @@ def visualisation():
 
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
 
-    #JCCoffee = correctfault(JCCoffee)
+    JCCoffee = correctfault(JCCoffee)
 
 
 

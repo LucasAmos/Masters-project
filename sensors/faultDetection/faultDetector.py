@@ -6,6 +6,7 @@ def correctfault(readings):
 
     # do not iterate over the first and last elements
     for idx, reading in enumerate(readings[1:-1]):
+        print("idx: " + str(readings[idx +1]['dht22']))
 
         if float(readings[idx+1]['dht22'] is not None):
 
@@ -17,9 +18,13 @@ def correctfault(readings):
 
             # if the the difference between an element and its preceding element is greater than 5:
             elif (float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22'])) > 5:
-
-                # replace the element with the preceding element
-                readings[idx + 1]['dht22'] = float(readings[idx]['dht22'])
+                print("ran")
+                print(float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22']))
+                print("idx-1: " + str(readings[idx ]['dht22']))
+                print("idx: " + str(readings[idx + 1]['dht22']))
+                print("")
+                #replace the element with the preceding element
+                readings[idx ]['dht22'] = float(readings[idx-1]['dht22'])
 
 
 
