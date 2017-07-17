@@ -25,21 +25,21 @@ def index():
 def visualisation():
 
 
-    # readings1 = db.session.query(Sensordata).filter(
-    #     Sensordata.DeviceID == "PiJCCoffee",
-    #     Sensordata.voc is not None,
-    #     Sensordata.voc > 0,
-    #     Sensordata.dht22 is not None,
-    #     Sensordata.dht22 > 0,
-    #     Sensordata.dht22 <= 100
-    # ).order_by(Sensordata.time.asc()).limit(2880).all()
-    #
-    # JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
-    # JCCoffee = correctfault(JCCoffee)
-
     readings1 = db.session.query(Sensordata).filter(
-        Sensordata.DeviceID == "PiJCCoffee"
+        Sensordata.DeviceID == "PiJCCoffee",
+        Sensordata.voc is not None,
+        Sensordata.voc > 0,
+        Sensordata.dht22 is not None,
+        Sensordata.dht22 > 0,
+        Sensordata.dht22 <= 100
     ).order_by(Sensordata.time.asc()).limit(2880).all()
+
+    JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
+    JCCoffee = correctfault(JCCoffee)
+
+    # readings1 = db.session.query(Sensordata).filter(
+    #     Sensordata.DeviceID == "PiJCCoffee"
+    # ).order_by(Sensordata.time.asc()).limit(2880).all()
 
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
     JCCoffee = JCCoffee
