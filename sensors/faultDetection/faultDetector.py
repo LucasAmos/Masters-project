@@ -46,7 +46,7 @@ def correctfault(readings):
             # if the the difference between an element and its preceding element is greater than 5:
             elif (float(readings[idx + 1]['dht11']) - float(readings[idx]['dht11'])) > 5:
 
-                readings[idx +1]['dht11'] = float(readings[idx]['dht11'])
+                readings[idx ]['dht11'] = float(readings[idx-1]['dht11'])
 
 
     return readings
