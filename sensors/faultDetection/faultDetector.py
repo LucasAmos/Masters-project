@@ -32,7 +32,7 @@ def correctfault(readings):
             elif (float(readings[idx + 1]['humidity']) - float(readings[idx]['humidity'])) > 5:
 
                             # replace the element with the preceding element
-                readings[idx]['humidity'] = float(readings[idx - 1]['humidity'])
+                readings[idx +1]['humidity'] = float(readings[idx ]['humidity'])
 
 
         if float(readings[idx+1]['dht11'] is not None):
