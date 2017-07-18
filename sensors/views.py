@@ -311,16 +311,17 @@ def hourvisualisation(deviceid, start):
 
     data = correctfault(data)
 
-    end = start + timedelta(days=7)
+    start2 = datetime.strptime(start, '%d-%m-%Y %H:%M:%S')
+    end2 = start + timedelta(days=7)
 
-    readings = db.session.query(Sensordata).filter(
+    readings2 = db.session.query(Sensordata).filter(
         Sensordata.time >= start,
-        Sensordata.time <= end,
+        Sensordata.time <= end2,
         Sensordata.DeviceID == deviceid
     ).order_by(Sensordata.time.asc()).all()
 
-    data2, errors1 = Sensordatas_schema.dump(readings)
+    data2, errors = Sensordatas_schema.dump(readings2)
 
-    data2 = correctfault(data)
+    data2 = correctfault(data2)
 
     return render_template('hourvisualisation.html', data=data, data2=data2)
