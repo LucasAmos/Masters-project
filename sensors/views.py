@@ -311,7 +311,6 @@ def hourvisualisation(deviceid, start):
 
     data = correctfault(data)
 
-    start = datetime.strptime(start, '%d-%m-%Y %H:%M:%S')
     end = start + timedelta(days=7)
 
     readings = db.session.query(Sensordata).filter(
