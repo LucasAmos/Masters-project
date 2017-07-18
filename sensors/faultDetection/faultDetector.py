@@ -17,7 +17,7 @@ def correctfault(readings):
             # if the the difference between an element and its preceding element is greater than 5:
             elif (float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22'])) > 5:
 
-                readings[idx ]['dht22'] = float(readings[idx-1]['dht22'])
+                readings[idx + 1]['dht22'] = float(readings[idx]['dht22'])
 
 
         if float(readings[idx + 1]['humidity'] is not None):
@@ -32,7 +32,7 @@ def correctfault(readings):
             elif (float(readings[idx + 1]['humidity']) - float(readings[idx]['humidity'])) > 5:
 
                             # replace the element with the preceding element
-                readings[idx +1]['humidity'] = float(readings[idx ]['humidity'])
+                readings[idx]['humidity'] = float(readings[idx - 1]['humidity'])
 
 
         if float(readings[idx+1]['dht11'] is not None):
