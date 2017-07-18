@@ -186,18 +186,12 @@
 
 
     // format the data
-
-
-    array = []
     data.forEach(function(d) {
         d.date = parseTime(d.date);
         d.voc = +d.humidity;
         d.dht22 = +d.dht22;
-        array.push(d.dht22)
-
     });
 
-    console.log(array)
 
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.date; }));
