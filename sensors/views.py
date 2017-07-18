@@ -297,11 +297,11 @@ def docs():
 #route to return visualisation of two hours data for specified device as a visualisation
 @app.route('/hourvisualisation/<deviceid>/<start>', methods=['GET'])
 def hourvisualisation(deviceid, start):
-    start = datetime.strptime(start, '%d-%m-%Y %H:%M:%S')
-    end = start + timedelta(hours=5)
+    start1 = datetime.strptime(start, '%d-%m-%Y %H:%M:%S')
+    end = start1 + timedelta(hours=5)
 
     readings = db.session.query(Sensordata).filter(
-        Sensordata.time >= start,
+        Sensordata.time >= start1,
         Sensordata.time <= end,
         Sensordata.DeviceID == deviceid
     ).order_by(Sensordata.time.asc()).all()
@@ -312,10 +312,10 @@ def hourvisualisation(deviceid, start):
     data = correctfault(data)
 
     start2 = datetime.strptime(start, '%d-%m-%Y %H:%M:%S')
-    end2 = start + timedelta(days=7)
+    end2 = start2 + timedelta(days=7)
 
     readings2 = db.session.query(Sensordata).filter(
-        Sensordata.time >= start,
+        Sensordata.time >= start2,
         Sensordata.time <= end2,
         Sensordata.DeviceID == deviceid
     ).order_by(Sensordata.time.asc()).all()
