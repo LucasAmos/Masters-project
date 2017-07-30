@@ -12,7 +12,7 @@ def correctfault2(readings):
                 float(readings[index+1]['dht22']) +
                 float(readings[index+2]['dht22']))/5
 
-        if mean * 1.5 < float(readings[index]['dht22']) or float(readings[index]['dht22']) < mean * 0.5:
+        if mean * 1.3 < float(readings[index]['dht22']) or float(readings[index]['dht22']) < mean * 0.7:
 
             replace = (float(readings[index - 2]['dht22']) +
                        float(readings[index - 1]['dht22']) +
