@@ -53,13 +53,13 @@ def correctfault2(readings):
         if float(readings[idx+1]['dht11'] is not None):
 
 
-            dht22mean = (float(readings[index-2]['dht11']) +
+            dht11mean = (float(readings[index-2]['dht11']) +
                     float(readings[index-1]['dht11']) +
                     float(readings[index]['dht11']) +
                     float(readings[index+1]['dht11']) +
                     float(readings[index+2]['dht11']))/5
 
-            if dht22mean * 1.3 < float(readings[index]['dht11']) or float(readings[index]['dht11']) < dht22mean * 0.7:
+            if dht11mean * 1.3 < float(readings[index]['dht11']) or float(readings[index]['dht11']) < dht11mean * 0.7:
 
                 replace = (float(readings[index - 2]['dht11']) +
                            float(readings[index - 1]['dht11']) +
