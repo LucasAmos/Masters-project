@@ -10,40 +10,35 @@ def correctfault2(readings):
     mean = count/ len(readings)
 
 
-    squares = 0
+    dht22variance = 0
 
     for reading in readings:
 
-        squares += (float(reading['dht22']) - mean) ** 2
+        dht22variance += (float(reading['dht22']) - mean) ** 2
 
-    squares = squares / (len(readings) -1)
-    print ("dht22 variance: " + str(math.sqrt(squares)))
+    dht22variance = dht22variance / (len(readings) -1)
+    dht22variance = math.sqrt(dht22variance)
+    print ("dht22 mean: " + str(mean))
+
+    print ("dht22 variance: " + str(dht22variance))
 
 
 
+    for idx, reading in enumerate(readings[4:-4]):
+
+        dht22mean = (float(readings[idx + 2]['dht22']) +
+                     float(readings[idx + 3]['dht22']) +
+                     float(readings[idx + 5]['dht22']) +
+                     float(readings[idx + 6]['dht22'])) / 4
 
 
-    #
-    #
-    # for idx, reading in enumerate(readings[4:-4]):
-    #
-    #     dht22mean = (float(readings[idx + 2]['dht22']) +
-    #                  float(readings[idx + 3]['dht22']) +
-    #                  float(readings[idx + 5]['dht22']) +
-    #                  float(readings[idx + 6]['dht22'])) / 4
-    #
-    #     if (float(readings[idx+4]['dht22']) > 50):
-    #         print(str(idx+4) + " "+str(readings[idx+4]['dht22']))
-    #
-    #         readings[idx + 4]['dht22'] = dht22mean
-    #
-    #     elif dht22mean * 1.3 < float(readings[idx+4]['dht22']) or float(readings[idx+4]['dht22']) < dht22mean * 0.7:
-    #
-    #         print("loop 2")
-    #         print(idx+4)
-    #         print(readings[idx + 4]['dht22'])
-    #
-    #         readings[idx + 4]['dht22'] = dht22mean
+        if float(readings[idx+4]['dht22']) > (mean + (dht22variance *2)) :
+
+            print("loop 2")
+            print(idx+4)
+            print(readings[idx + 4]['dht22'])
+
+            readings[idx + 4]['dht22'] = dht22mean
 
 
 
