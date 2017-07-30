@@ -18,9 +18,9 @@ def correctfault2(readings):
 
     humidityvariance = humidityvariance / (len(readings) -1)
     humidityvariance = math.sqrt(humidityvariance)
-    # print ("dht22 mean: " + str(mean))
-    #
-    # print ("dht22 variance: " + str(humidityvariance))
+    print ("dht22 mean: " + str(mean))
+
+    print ("dht22 variance: " + str(humidityvariance))
 
 
 
@@ -57,9 +57,9 @@ def correctfault2(readings):
 
         humidityvariance = humidityvariance / (len(readings) - 1)
         humidityvariance = math.sqrt(humidityvariance)
-        # print ("humidity mean: " + str(mean))
-        #
-        # print ("humidity variance: " + str(humidityvariance))
+        print ("humidity mean: " + str(mean))
+
+        print ("humidity variance: " + str(humidityvariance))
 
         for idx, reading in enumerate(readings[4:-4]):
 
