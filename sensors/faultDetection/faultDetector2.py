@@ -28,7 +28,7 @@ def correctfault2(readings):
                      float(readings[idx + 6]['dht22'])) / 4
 
 
-        if (float(readings[idx+4]['dht22']) > (mean + (dht22variance *2)) or float(readings[idx+4]['dht22']) <(mean - (dht22variance *2)) ) :
+        if (float(readings[idx+4]['dht22']) > (mean + (dht22variance *1.5)) or float(readings[idx+4]['dht22']) <(mean - (dht22variance *1.5)) ) :
             #
             # print("loop 2")
             # print(idx+4)
@@ -66,7 +66,7 @@ def correctfault2(readings):
                          float(readings[idx + 5]['humidity']) +
                          float(readings[idx + 6]['humidity'])) / 4
 
-            if (float(readings[idx + 4]['humidity']) > (mean + (humidityvariance * 2)) or float(readings[idx + 4]['humidity']) < (mean - (humidityvariance * 2))  ):
+            if (float(readings[idx + 4]['humidity']) > (mean + (humidityvariance * 1.5)) or float(readings[idx + 4]['humidity']) < (mean - (humidityvariance * 1.5))  ):
                 # print("loop 2")
                 # print(idx + 4)
                 # print(readings[idx + 4]['humidity'])
