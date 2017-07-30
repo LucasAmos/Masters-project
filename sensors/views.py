@@ -6,6 +6,7 @@ from models import Sensordata, User
 from flask_restful import Resource, Api, reqparse, reqparse
 from datetime import datetime, timedelta
 from faultDetection.faultDetector import correctfault
+from faultDetection.faultDetector2 import correctfault2
 
 api = Api(app)
 auth =HTTPBasicAuth()
