@@ -1,78 +1,92 @@
-from datetime import  datetime
-
+import math
 def correctfault2(readings):
 
-    for idx, reading in enumerate(readings[4:-4]):
+    count =0
 
-        index = idx+4
+    for reading in readings:
 
-        if float(readings[idx+1]['dht22'] is not None):
+        count += float(reading['dht22'])
 
-
-            dht22mean = (float(readings[index-2]['dht22']) +
-                    float(readings[index-1]['dht22']) +
-                    float(readings[index]['dht22']) +
-                    float(readings[index+1]['dht22']) +
-                    float(readings[index+2]['dht22']))/5
-
-            if dht22mean * 1.3 < float(readings[index]['dht22']) or float(readings[index]['dht22']) < dht22mean * 0.7:
-
-                replace = (float(readings[index - 2]['dht22']) +
-                           float(readings[index - 1]['dht22']) +
-                           float(readings[index + 1]['dht22']) +
-                           float(readings[index + 2]['dht22'])) / 4
-
-                readings[index]['dht22'] = replace
-
-                # print("**************")
-                # print ("error temp: " + str(readings[index]['dht22']))
-                # print("replace: " + str(replace))
-                # print("**************")
-
-        if float(readings[idx+1]['humidity'] is not None):
+    mean = count/ len(readings)
 
 
-            humiditymean = (float(readings[index - 2]['humidity']) +
-                         float(readings[index - 1]['humidity']) +
-                         float(readings[index]['humidity']) +
-                         float(readings[index + 1]['humidity']) +
-                         float(readings[index + 2]['humidity'])) / 5
+    squares = 0
 
-            if humiditymean * 1.3 < float(readings[index]['humidity']) or float(readings[index]['humidity']) < humiditymean * 0.7:
-                replace = (float(readings[index - 2]['humidity']) +
-                           float(readings[index - 1]['humidity']) +
-                           float(readings[index + 1]['humidity']) +
-                           float(readings[index + 2]['humidity'])) / 4
+    for reading in readings:
 
-                readings[index]['humidity'] = replace
+        squares += (float(reading['dht22']) - mean) ** 2
 
-                # print("**************")
-                # print ("error humidity: " + str(readings[index]['humidity']))
-                # print("replace: " + str(replace))
-                # print("**************")
+    squares = squares / (len(readings) -1)
+    print ("dht22 variance: " + str(math.sqrt(squares)))
 
 
-        if float(readings[idx+1]['dht11'] is not None):
 
-            dht11mean = (float(readings[index-2]['dht11']) +
-                    float(readings[index-1]['dht11']) +
-                    float(readings[index]['dht11']) +
-                    float(readings[index+1]['dht11']) +
-                    float(readings[index+2]['dht11']))/5
 
-            if dht11mean * 1.3 < float(readings[index]['dht11']) or float(readings[index]['dht11']) < dht11mean * 0.7:
 
-                replace = (float(readings[index - 2]['dht11']) +
-                           float(readings[index - 1]['dht11']) +
-                           float(readings[index + 1]['dht11']) +
-                           float(readings[index + 2]['dht11'])) / 4
+    #
+    #
+    # for idx, reading in enumerate(readings[4:-4]):
+    #
+    #     dht22mean = (float(readings[idx + 2]['dht22']) +
+    #                  float(readings[idx + 3]['dht22']) +
+    #                  float(readings[idx + 5]['dht22']) +
+    #                  float(readings[idx + 6]['dht22'])) / 4
+    #
+    #     if (float(readings[idx+4]['dht22']) > 50):
+    #         print(str(idx+4) + " "+str(readings[idx+4]['dht22']))
+    #
+    #         readings[idx + 4]['dht22'] = dht22mean
+    #
+    #     elif dht22mean * 1.3 < float(readings[idx+4]['dht22']) or float(readings[idx+4]['dht22']) < dht22mean * 0.7:
+    #
+    #         print("loop 2")
+    #         print(idx+4)
+    #         print(readings[idx + 4]['dht22'])
+    #
+    #         readings[idx + 4]['dht22'] = dht22mean
 
-                readings[index]['dht11'] = replace
 
-                # print("**************")
-                # print ("error temp: " + str(readings[index]['dht11']))
-                # print("replace: " + str(replace))
-                # print("**************")
+
+
+
+
+
+
+
+        # if (readings[idx]['dht22'] > 5000):
+        #     print("")
+        #     print("yep")
+        #     print(idx)
+        #     print(readings[idx]['date'] )
+
+
+
+
+        #
+        # if float(readings[idx]['dht22'] is not None):
+        #
+        #     dht22mean = (float(readings[idx-2]['dht22']) +
+        #             float(readings[idx-1]['dht22']) +
+        #             float(readings[idx]['dht22']) +
+        #             float(readings[idx+1]['dht22']) +
+        #             float(readings[idx+2]['dht22']))/5
+        #
+        #     if dht22mean * 1.3 < float(readings[idx]['dht22']) or float(readings[idx]['dht22']) < dht22mean * 0.7:
+        #
+        #         replace = (float(readings[idx - 2]['dht22']) +
+        #                    float(readings[idx - 1]['dht22']) +
+        #                    float(readings[idx + 1]['dht22']) +
+        #                    float(readings[idx + 2]['dht22'])) / 4
+        #
+        #         readings[idx]['dht22'] = replace
+        #
+        #         print("**************")
+        #         print ("error temp: " + str(readings[idx]['dht22']))
+        #         print("replace: " + str(replace))
+        #         print("**************")
+
+
+
 
 
     return readings
