@@ -46,7 +46,7 @@ def visualisation():
 
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
 
-    JCCoffee = correctfault2(JCCoffee)
+    JCCoffee = correctfault(JCCoffee)
 
 
 
@@ -62,7 +62,7 @@ def visualisation():
 
     JCLab, errors2 = Sensordatas_schema.dump(readings2)
 
-    JCLab = correctfault2(JCLab)
+    JCLab = correctfault(JCLab)
 
     readings3 = db.session.query(Sensordata).filter(
         Sensordata.DeviceID == "PiJHLabDoor",
@@ -75,7 +75,7 @@ def visualisation():
 
     JHLab, errors3 = Sensordatas_schema.dump(readings3)
 
-    JHLab = correctfault2(JHLab)
+    JHLab = correctfault(JHLab)
 
     return render_template('visualisation.html', JCCoffee=JCCoffee, JHLab=JHLab, JCLab=JCLab)
 
@@ -325,6 +325,6 @@ def hourvisualisation(deviceid, start):
 
     data2, errors = Sensordatas_schema.dump(readings2)
 
-    data2 = correctfault2(data2)
+    data2 = correctfault(data2)
 
     return render_template('hourvisualisation.html', data=data, data2=data2)
