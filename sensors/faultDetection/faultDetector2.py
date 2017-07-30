@@ -22,9 +22,10 @@ def correctfault2(readings):
                            float(readings[index + 1]['dht22']) +
                            float(readings[index + 2]['dht22'])) / 4
 
+                readings[index]['dht22'] = replace
+
                 # print("**************")
                 # print ("error temp: " + str(readings[index]['dht22']))
-                # readings[index]['dht22'] = replace
                 # print("replace: " + str(replace))
                 # print("**************")
 
@@ -43,15 +44,15 @@ def correctfault2(readings):
                            float(readings[index + 1]['humidity']) +
                            float(readings[index + 2]['humidity'])) / 4
 
+                readings[index]['humidity'] = replace
+
                 # print("**************")
                 # print ("error humidity: " + str(readings[index]['humidity']))
-                # readings[index]['humidity'] = replace
                 # print("replace: " + str(replace))
                 # print("**************")
 
 
         if float(readings[idx+1]['dht11'] is not None):
-
 
             dht11mean = (float(readings[index-2]['dht11']) +
                     float(readings[index-1]['dht11']) +
@@ -65,6 +66,8 @@ def correctfault2(readings):
                            float(readings[index - 1]['dht11']) +
                            float(readings[index + 1]['dht11']) +
                            float(readings[index + 2]['dht11'])) / 4
+
+                readings[index]['dht11'] = replace
 
                 # print("**************")
                 # print ("error temp: " + str(readings[index]['dht11']))
