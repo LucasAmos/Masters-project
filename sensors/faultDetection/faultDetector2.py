@@ -45,65 +45,14 @@ def correctfault2(readings):
 
             readings[idx + 1]['dht22'] = dht22mean;
 
+            print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['dht22']))+" Diff: " + str(difference)+ " " + " Mean: " + str(mean))
 
-        humiditymean = (float(readings[idx + 2]['humidity']) + float(readings[idx]['humidity'])) / 2
+        elif  mean - float(readings[idx + 1]['dht22']) > (dht22variance *2 ):
 
-        if float(readings[idx + 1]['humidity']) - mean > (humidityvariance * 2):
-            readings[idx + 1]['humidity'] = humiditymean;
+            readings[idx + 1]['dht22'] = dht22mean;
 
-            #print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['dht22']))+" Diff: " + str(difference)+ " " + " Mean: " + str(mean))
+            print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['dht22']))+" Diff: " + str(difference)+ " " + " Mean: " + str(mean))
 
-
-
-
-
-
-
-
-
-
-            #
-        # if (float(readings[idx+4]['dht22']) > (dht22mean + (dht22variance *1.5)) or float(readings[idx+4]['dht22']) <(dht22mean - (dht22variance *1.5)) ) :
-        #
-        #     readings[idx + 4]['dht22'] = dht22mean
-
-
-
-
-
-
-
-        # if (readings[idx]['dht22'] > 5000):
-        #     print("")
-        #     print("yep")
-        #     print(idx)
-        #     print(readings[idx]['date'] )
-
-
-
-
-        #
-        # if float(readings[idx]['dht22'] is not None):
-        #
-        #     dht22mean = (float(readings[idx-2]['dht22']) +
-        #             float(readings[idx-1]['dht22']) +
-        #             float(readings[idx]['dht22']) +
-        #             float(readings[idx+1]['dht22']) +
-        #             float(readings[idx+2]['dht22']))/5
-        #
-        #     if dht22mean * 1.3 < float(readings[idx]['dht22']) or float(readings[idx]['dht22']) < dht22mean * 0.7:
-        #
-        #         replace = (float(readings[idx - 2]['dht22']) +
-        #                    float(readings[idx - 1]['dht22']) +
-        #                    float(readings[idx + 1]['dht22']) +
-        #                    float(readings[idx + 2]['dht22'])) / 4
-        #
-        #         readings[idx]['dht22'] = replace
-        #
-        #         print("**************")
-        #         print ("error temp: " + str(readings[idx]['dht22']))
-        #         print("replace: " + str(replace))
-        #         print("**************")
 
 
 
