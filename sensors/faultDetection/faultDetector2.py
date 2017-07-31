@@ -36,6 +36,8 @@ def correctfault2(readings, sensorid):
     print ("humidity variance: " + str(humidityvariance))
 
 
+    print (sensorid == 22)
+
 
     # do not iterate over the first and last elements
     for idx, reading in enumerate(readings[1:-1]):
