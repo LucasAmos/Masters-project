@@ -76,7 +76,7 @@ def visualisation():
 
     JHLab, errors3 = Sensordatas_schema.dump(readings3)
 
-    #JHLab = correctfault2(JHLab)
+    JHLab = correctfault2(JHLab, "dht11")
 
     return render_template('visualisation.html', JCCoffee=JCCoffee, JHLab=JHLab, JCLab=JCLab)
 
