@@ -31,8 +31,7 @@ def correctfault2(readings, sensorid):
 
         if float(readings[idx + 1]['humidity'] is not None):
             # assumes that the first reading is not an error. If the element is a clear error:
-            if float(readings[idx + 1]['humidity']) > (humiditymean + humidityvariance) or (humiditymean -humidityvariance < float(readings[idx + 1]['humidity']) ):
-
+            if float(readings[idx + 1]['humidity']) > 70 or float(readings[idx + 1]['humidity']) < 10:
                             # replace the element with the previous element (this is why it's import first element is not an error
                 readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
 
