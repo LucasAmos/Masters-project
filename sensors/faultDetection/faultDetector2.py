@@ -48,12 +48,12 @@ def correctfault2(readings, tempsensorid):
                 readings[idx + 1][tempsensorid] = float(readings[idx][tempsensorid])
 
             # if the the difference between an element and its preceding element is greater than 5:
-            if (float(readings[idx + 1][tempsensorid]) - float(readings[idx][tempsensorid])) > dht22variance/2:
+            if (float(readings[idx + 1][tempsensorid]) - float(readings[idx][tempsensorid])) > dht22variance:
 
                 readings[idx ][tempsensorid] = float(readings[idx-1][tempsensorid])
 
             # if the the difference between an element and its next element is greater than 5:
-            elif (float(readings[idx ][tempsensorid]) - float(readings[idx + 1][tempsensorid])) > dht22variance/2:
+            elif (float(readings[idx ][tempsensorid]) - float(readings[idx + 1][tempsensorid])) > dht22variance:
 
                 readings[idx+1][tempsensorid] = float(readings[idx][tempsensorid])
 
