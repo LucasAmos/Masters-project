@@ -55,7 +55,7 @@ def correctfault2(readings):
 
 
 
-        humidmean = (float(readings[idx+2]['humidity']) + float(readings[idx]['humidity']))/2
+        humidmean = (float(readings[idx+1]['humidity']) + float(readings[idx-1]['humidity']))/2
 
         if float(readings[idx + 1]['humidity']) > 100:
             readings[idx + 1]['humidity'] = humiditymean
