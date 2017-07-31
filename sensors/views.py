@@ -62,7 +62,7 @@ def visualisation():
 
     JCLab, errors2 = Sensordatas_schema.dump(readings2)
 
-    #JCLab = correctfault(JCLab)
+    JCLab = correctfault2(JCLab)
 
     readings3 = db.session.query(Sensordata).filter(
         Sensordata.DeviceID == "PiJHLabDoor",
@@ -75,7 +75,7 @@ def visualisation():
 
     JHLab, errors3 = Sensordatas_schema.dump(readings3)
 
-    #JHLab = correctfault(JHLab)
+    JHLab = correctfault2(JHLab)
 
     return render_template('visualisation.html', JCCoffee=JCCoffee, JHLab=JHLab, JCLab=JCLab)
 
