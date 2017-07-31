@@ -55,6 +55,20 @@ def correctfault2(readings):
 
 
 
+        humiditymean = (float(readings[idx+2]['humidity']) + float(readings[idx]['humidity']))/2
+
+        if float(readings[idx + 1]['humidity']) - humiditymean > (humidityvariance *2 ):
+
+            readings[idx + 1]['humidity'] = humiditymean;
+
+            print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['humidity']))+" Diff: " + str(difference)+ " " + " Mean: " + str(humiditymean))
+
+        elif  mean - float(readings[idx + 1]['humidity']) > (humidityvariance *2 ):
+
+            readings[idx + 1]['humidity'] = humiditymean;
+
+            print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['humidity']))+" Diff: " + str(difference)+ " " + " Mean: " + str(humiditymean))
+
 
 
 
