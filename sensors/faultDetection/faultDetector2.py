@@ -17,18 +17,12 @@ def correctfault2(readings):
     humiditymean = humiditycount / len(readings)
 
     dht22variance = 0
-    humidityvariance = 0
 
     for reading in readings:
         dht22variance += (float(reading['dht22']) - dhtmean) ** 2
-        humidityvariance += (float(reading['humidity']) - humiditymean) ** 2
-
-
 
     dht22variance = dht22variance / (len(readings) -1)
     dht22variance = math.sqrt(dht22variance)
-    humidityvariance = humidityvariance / (len(readings) - 1)
-    humidityvariance = math.sqrt(humidityvariance)
 
 
     for idx, reading in enumerate(readings[4:-4]):
@@ -47,36 +41,40 @@ def correctfault2(readings):
 
             readings[idx + 4]['dht22'] = dht22mean
 
-        humiditymean = (float(readings[idx + 2]['humidity']) +
-                        float(readings[idx + 3]['humidity']) +
-                        float(readings[idx + 5]['humidity']) +
-                        float(readings[idx + 6]['humidity'])) / 4
-
-
-        if (float(readings[idx + 4]['humidity']) > (humiditymean + (humidityvariance * 1.5)) or float(readings[idx + 4]['humidity']) < (humiditymean - (humidityvariance * 1.5))  ):
-            # print("loop 2")
-            # print(idx + 4)
-            # print(readings[idx + 4]['humidity'])
-
-            readings[idx + 4]['humidity'] = humiditymean
-
     print ("dht22 mean: " + str(dhtmean))
     print ("dht22 variance: " + str(dht22variance))
+    #humidity
+
+
+    for reading in readings:
+
+
+
+        humidityvariance = 0
+
+        for reading in readings:
+            humidityvariance += (float(reading['humidity']) - humiditymean) ** 2
+
+        humidityvariance = humidityvariance / (len(readings) - 1)
+        humidityvariance = math.sqrt(humidityvariance)
+
+
+        for idx, reading in enumerate(readings[4:-4]):
+
+            humiditymean = (float(readings[idx + 2]['humidity']) +
+                         float(readings[idx + 3]['humidity']) +
+                         float(readings[idx + 5]['humidity']) +
+                         float(readings[idx + 6]['humidity'])) / 4
+
+            if (float(readings[idx + 4]['humidity']) > (humiditymean + (humidityvariance * 1.5)) or float(readings[idx + 4]['humidity']) < (humiditymean - (humidityvariance * 1.5))  ):
+                # print("loop 2")
+                # print(idx + 4)
+                # print(readings[idx + 4]['humidity'])
+
+                readings[idx + 4]['humidity'] = humiditymean
 
     print ("humidity mean: " + str(humiditymean))
     print ("humidity variance: " + str(humidityvariance))
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
