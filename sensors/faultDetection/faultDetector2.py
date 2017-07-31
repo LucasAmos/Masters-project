@@ -13,7 +13,7 @@ def correctfault2(readings, sensorid):
     humidityvariance = 0
 
     for reading in readings:
-        humidityvariance += (float(reading['dht22']) - humiditymean) ** 2
+        humidityvariance += (float(reading['humidity']) - humiditymean) ** 2
 
 
 
