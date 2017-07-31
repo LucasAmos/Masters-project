@@ -38,26 +38,27 @@ def correctfault2(readings, tempsensorid):
     print ("humidity variance: " + str(humidityvariance))
 
 
+    if tempsensorid == "dht22":
 
-    # do not iterate over the first and last elements
-    for idx, reading in enumerate(readings[1:-1]):
-        if float(readings[idx+1][tempsensorid] is not None):
+        # do not iterate over the first and last elements
+        for idx, reading in enumerate(readings[1:-1]):
+            if float(readings[idx+1][tempsensorid] is not None):
 
-            # assumes that the first reading is not an error. If the element is a clear error:
-            if float(readings[idx+1][tempsensorid]) > (dht22mean + (dht22variance * 2)) or float(readings[idx+1][tempsensorid]) < (dht22mean - (dht22variance * 2)):
+                # assumes that the first reading is not an error. If the element is a clear error:
+                if float(readings[idx+1][tempsensorid]) > (dht22mean + (dht22variance * 2)) or float(readings[idx+1][tempsensorid]) < (dht22mean - (dht22variance * 2)):
 
-                # replace the element with the previous element (this is why it's import first element is not an error
-                readings[idx + 1][tempsensorid] = float(readings[idx][tempsensorid])
+                    # replace the element with the previous element (this is why it's import first element is not an error
+                    readings[idx + 1][tempsensorid] = float(readings[idx][tempsensorid])
 
-            # if the the difference between an element and its preceding element is greater than 5:
-            if (float(readings[idx + 1][tempsensorid]) - float(readings[idx][tempsensorid])) > dht22variance/2:
+                # if the the difference between an element and its preceding element is greater than 5:
+                if (float(readings[idx + 1][tempsensorid]) - float(readings[idx][tempsensorid])) > dht22variance/2:
 
-                readings[idx ][tempsensorid] = float(readings[idx-1][tempsensorid])
+                    readings[idx ][tempsensorid] = float(readings[idx-1][tempsensorid])
 
-            # if the the difference between an element and its next element is greater than 5:
-            elif (float(readings[idx ][tempsensorid]) - float(readings[idx + 1][tempsensorid])) > dht22variance/2:
+                # if the the difference between an element and its next element is greater than 5:
+                elif (float(readings[idx ][tempsensorid]) - float(readings[idx + 1][tempsensorid])) > dht22variance/2:
 
-                readings[idx+1][tempsensorid] = float(readings[idx][tempsensorid])
+                    readings[idx+1][tempsensorid] = float(readings[idx][tempsensorid])
 
 
 
