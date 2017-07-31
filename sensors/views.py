@@ -56,9 +56,7 @@ def visualisation():
         Sensordata.DeviceID == "PiJCLabRear",
         Sensordata.voc is not None,
         Sensordata.voc > 0,
-        Sensordata.dht11 is not None,
-        Sensordata.dht11 > 0,
-        Sensordata.dht11 <= 100
+        Sensordata.dht11 is not None
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
     JCLab, errors2 = Sensordatas_schema.dump(readings2)
@@ -69,9 +67,7 @@ def visualisation():
         Sensordata.DeviceID == "PiJHLabDoor",
         Sensordata.voc is not None,
         Sensordata.voc > 0,
-        Sensordata.dht11 is not None,
-        Sensordata.dht11 > 0,
-        Sensordata.dht11 <= 100
+        Sensordata.dht11 is not None
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
     JHLab, errors3 = Sensordatas_schema.dump(readings3)
