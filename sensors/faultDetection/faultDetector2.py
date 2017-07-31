@@ -1,4 +1,6 @@
 import math
+
+
 def correctfault2(readings):
 
     count =0
@@ -7,17 +9,15 @@ def correctfault2(readings):
 
         count += float(reading['dht22'])
 
-    mean = count/ len(readings)
+    mean = count / len(readings)
 
     dht22variance = 0
 
     for reading in readings:
         dht22variance += (float(reading['dht22']) - mean) ** 2
 
-        dht22variance = dht22variance / (len(readings) -1)
-        dht22variance = math.sqrt(dht22variance)
-
-
+    dht22variance = dht22variance / (len(readings) -1)
+    dht22variance = math.sqrt(dht22variance)
 
 
     for idx, reading in enumerate(readings[4:-4]):
@@ -49,8 +49,6 @@ def correctfault2(readings):
         mean = count / len(readings)
 
         humidityvariance = 0
-
-
 
         for reading in readings:
             humidityvariance += (float(reading['humidity']) - mean) ** 2
