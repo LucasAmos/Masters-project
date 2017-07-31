@@ -46,7 +46,7 @@ def visualisation():
 
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
 
-    JCCoffee = correctfault2(JCCoffee, "dht22")
+    JCCoffee = correctfault(JCCoffee, "dht22")
     #JCCoffee = correctfault(JCCoffee)
 
 
@@ -63,7 +63,7 @@ def visualisation():
 
     JCLab, errors2 = Sensordatas_schema.dump(readings2)
 
-    JCLab = correctfault2(JCLab, "dht11")
+    JCLab = correctfault(JCLab)
 
     readings3 = db.session.query(Sensordata).filter(
         Sensordata.DeviceID == "PiJHLabDoor",
