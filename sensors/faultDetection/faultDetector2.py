@@ -28,6 +28,7 @@ def correctfault2(readings):
     humidityvariance = math.sqrt(humidityvariance)
 
     print("")
+    print ("dht22 mean: " + str(dht22mean))
     print ("dht22 variance: " + str(dht22variance))
     print ("humidity mean: " + str(humiditymean))
     print ("humidity variance: " + str(humidityvariance))
