@@ -39,9 +39,9 @@ def correctfault2(readings):
 
             # # assumes that the first reading is not an error. If the element is a clear error:
             # if float(readings[idx+1]['dht22']) > 50 or float(readings[idx+1]['dht22']) < 10:
-
-                # replace the element with the previous element (this is why it's import first element is not an error
-                readings[idx + 1]['dht22'] = float(readings[idx]['dht22'])
+            #
+            #     # replace the element with the previous element (this is why it's import first element is not an error
+            #     readings[idx + 1]['dht22'] = float(readings[idx]['dht22'])
 
             # if the the difference between an element and its preceding element is greater than 5:
             elif (float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22'])) > dht22variance:
