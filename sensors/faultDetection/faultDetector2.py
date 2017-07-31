@@ -62,6 +62,8 @@ def correctfault2(readings):
 
             print(readings[idx+1]['humidity'])
             print("humid mean: " + str(humidmean))
+            print("Idx +2 :" + str(idx+2))
+            print("Idx :" + str(idx))
 
 
 
