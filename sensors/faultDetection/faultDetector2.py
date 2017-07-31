@@ -70,6 +70,8 @@ def correctfault2(readings):
 
                 readings[idx + 1]['humidity'] = humidmean;
 
+                print("humid replacement: " + str(humidmean))
+
 
 
             #print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['humidity']))+" Diff: " + str(difference)+ " " + " Mean: " + str(humiditymean))
