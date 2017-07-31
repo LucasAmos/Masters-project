@@ -9,26 +9,21 @@ def correctfault2(readings):
     for reading in readings:
 
 
-        dht11count += float(reading['dht11'])
+
         dht22count += float(reading['dht22'])
         humiditycount += float(reading['humidity'])
 
-    dht11mean = dht11count / len(readings)
     dht22mean = dht22count / len(readings)
     humiditymean = humiditycount / len(readings)
 
 
-    dht11variance = 0
     dht22variance = 0
     humidityvariance = 0
 
     for reading in readings:
-        dht11variance += (float(reading['dht11']) - dht11mean) ** 2
         dht22variance += (float(reading['dht22']) - dht22mean) ** 2
         humidityvariance += (float(reading['dht22']) - humiditymean) ** 2
 
-    dht11variance = dht11variance / (len(readings) - 1)
-    dht11variance = math.sqrt(dht11variance)
 
     dht22variance = dht22variance / (len(readings) - 1)
     dht22variance = math.sqrt(dht22variance)
