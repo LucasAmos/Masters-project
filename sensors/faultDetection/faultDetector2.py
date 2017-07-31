@@ -51,11 +51,16 @@ def correctfault2(readings):
 
             readings[idx + 1]['dht22'] = dht22mean;
 
-            print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['dht22']))+" Diff: " + str(difference)+ " " + " Mean: " + str(mean))
+            #print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['dht22']))+" Diff: " + str(difference)+ " " + " Mean: " + str(mean))
 
 
 
         humiditymean = (float(readings[idx+2]['humidity']) + float(readings[idx]['humidity']))/2
+
+        if float(readings[idx + 1]['humidity']) > 100:
+            readings[idx + 1]['humidity'] = humiditymean
+
+
 
         if float(readings[idx + 1]['humidity']) - humiditymean > (humidityvariance *2 ):
 
@@ -67,7 +72,7 @@ def correctfault2(readings):
 
             readings[idx + 1]['humidity'] = humiditymean;
 
-            print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['humidity']))+" Diff: " + str(difference)+ " " + " Mean: " + str(humiditymean))
+            #print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['humidity']))+" Diff: " + str(difference)+ " " + " Mean: " + str(humiditymean))
 
 
 
