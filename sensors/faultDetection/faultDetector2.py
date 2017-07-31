@@ -34,7 +34,7 @@ def correctfault2(readings, sensorid):
             # assumes that the first reading is not an error. If the element is a clear error:
             if float(readings[idx + 1]['humidity']) > 70 or float(readings[idx + 1]['humidity']) < 10:
 
-                print ("triggered"  + str(float(readings[idx + 1])) + " " + str(float(readings[idx + 1]) ))
+                print ("idx "  + str(float(readings[idx ]['humidity'])) + " idx+1" + str(float(readings[idx + 1]['humidity']) ))
 
                 # replace the element with the previous element (this is why it's import first element is not an error
                 readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
