@@ -34,7 +34,8 @@ def visualisation():
         Sensordata.DeviceID == "PiJCCoffee",
         Sensordata.voc is not None,
         Sensordata.voc > 0,
-        Sensordata.dht22 is not None
+        Sensordata.dht22 is not None,
+        Sensordata.humidity < 100
     ).order_by(Sensordata.time.asc()).all()
 
     # JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
@@ -67,8 +68,7 @@ def visualisation():
         Sensordata.DeviceID == "PiJHLabDoor",
         Sensordata.voc is not None,
         Sensordata.voc > 0,
-        Sensordata.dht11 is not None,
-        Sensordata.humidity < 100
+        Sensordata.dht11 is not None
 
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
