@@ -29,6 +29,7 @@ def correctfault2(readings):
 
     print("")
     print ("dht22 variance: " + str(dht22variance))
+    print ("humidity mean: " + str(humiditymean))
     print ("humidity variance: " + str(humidityvariance))
 
 
@@ -58,7 +59,7 @@ def correctfault2(readings):
 
         if float(readings[idx + 1]['humidity'] is not None):
             # assumes that the first reading is not an error. If the element is a clear error:
-            if float(readings[idx + 1]['humidity']) > 70 or float(readings[idx + 1]['humidity']) < (humiditymean -humidityvariance):
+            if float(readings[idx + 1]['humidity']) > (humiditymean + humidityvariance) or float(readings[idx + 1]['humidity']) < (humiditymean -humidityvariance):
 
                             # replace the element with the previous element (this is why it's import first element is not an error
                 readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
