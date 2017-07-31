@@ -67,7 +67,9 @@ def visualisation():
         Sensordata.DeviceID == "PiJHLabDoor",
         Sensordata.voc is not None,
         Sensordata.voc > 0,
-        Sensordata.dht11 is not None
+        Sensordata.dht11 is not None,
+        Sensordata.humidity < 100
+
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
     JHLab, errors3 = Sensordatas_schema.dump(readings3)
