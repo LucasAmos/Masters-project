@@ -80,7 +80,7 @@ def correctfault2(readings):
 
             if (humidmean > 1000):
 
-                print("humidmean: " + humidmean)
+                print("humidmean: " + str(humidmean))
 
 
             # print(readings[idx + 1]['humidity'])
