@@ -66,7 +66,11 @@ def correctfault2(readings):
 
         elif float(readings[idx + 1]['humidity']) - humidmean > (humidityvariance *2 ):
 
-            readings[idx + 1]['humidity'] = humiditymean;
+            if readings[idx + 1]['humidity'] < 100:
+
+                readings[idx + 1]['humidity'] = humidmean;
+
+
 
             #print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['humidity']))+" Diff: " + str(difference)+ " " + " Mean: " + str(humiditymean))
 
