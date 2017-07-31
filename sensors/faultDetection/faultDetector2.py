@@ -60,7 +60,7 @@ def correctfault2(readings):
         if float(readings[idx + 1]['humidity']) > 100:
             readings[idx + 1]['humidity'] = 50
 
-            print(reading[idx+1]['id'])
+            print(reading[idx+1]['humidity'])
 
 
 
