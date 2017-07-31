@@ -32,70 +32,62 @@ def correctfault2(readings):
     print ("humidity variance: " + str(humidityvariance))
 
 
+
+    # do not iterate over the first and last elements
     for idx, reading in enumerate(readings[1:-1]):
+        if float(readings[idx+1]['dht22'] is not None):
 
-        # compare to preceding value
-        difference = float(readings[idx+1]['dht22']) - float(readings[idx]['dht22'])
+            # assumes that the first reading is not an error. If the element is a clear error:
+            if float(readings[idx+1]['dht22']) > 50 or float(readings[idx+1]['dht22']) < 10:
 
+                # replace the element with the previous element (this is why it's import first element is not an error
+                readings[idx + 1]['dht22'] = float(readings[idx]['dht22'])
 
+            # if the the difference between an element and its preceding element is greater than 5:
+            elif (float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22'])) > 3:
 
-        mean = (float(readings[idx+2]['dht22']) + float(readings[idx]['dht22']))/2
+                readings[idx ]['dht22'] = float(readings[idx-1]['dht22'])
 
-        if float(readings[idx + 1]['dht22']) - mean > (dht22variance *2 ):
+            # if the the difference between an element and its next element is greater than 5:
+            elif (float(readings[idx ]['dht22']) - float(readings[idx + 1]['dht22'])) > 3:
 
-            readings[idx + 1]['dht22'] = dht22mean;
-
-            #print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['dht22']))+" Diff: " + str(difference)+ " " + " Mean: " + str(mean))
-
-        elif  mean - float(readings[idx + 1]['dht22']) > (dht22variance *2 ):
-
-            readings[idx + 1]['dht22'] = dht22mean;
-
-            #print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['dht22']))+" Diff: " + str(difference)+ " " + " Mean: " + str(mean))
-
-
-
-        humidmean = (float(readings[idx+1]['humidity']) + float(readings[idx-1]['humidity']))/2
-
-        if float(readings[idx + 1]['humidity']) > 100:
-            readings[idx + 1]['humidity'] = humiditymean
-
-            print("humidmean1: " + str(humidmean))
-            print("Idx +2 :" + str(readings[idx + 2]['humidity']))
-            print("Idx +1 :" + str(readings[idx + 1]['humidity']))
-            print("Idx :" + str(readings[idx]['humidity']))
+                readings[idx+1]['dht22'] = float(readings[idx]['dht22'])
 
 
 
 
-        elif float(readings[idx + 1]['humidity']) - humidmean > (humidityvariance *2 ):
-            print("humidmean2: " + str(humidmean))
+        if float(readings[idx + 1]['humidity'] is not None):
+            # assumes that the first reading is not an error. If the element is a clear error:
+            if float(readings[idx + 1]['humidity']) > 70 or float(readings[idx + 1]['humidity']) < 10:
 
-            if readings[idx + 1]['humidity'] < 100:
+                            # replace the element with the previous element (this is why it's import first element is not an error
+                readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
 
-                readings[idx + 1]['humidity'] = humidmean;
+                        # if the the difference between an element and its preceding element is greater than 5:
+            elif (float(readings[idx + 1]['humidity']) - float(readings[idx]['humidity'])) > 5:
 
-
-
-
-            #print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['humidity']))+" Diff: " + str(difference)+ " " + " Mean: " + str(humiditymean))
-
-        elif  humidmean - float(readings[idx + 1]['humidity']) > (float(readings[idx + 1]['humidity']) - humidityvariance  ):
-
-            readings[idx + 1]['humidity'] = humidmean;
-            print("humidmean3: " + str(humidmean))
+                            # replace the element with the preceding element
+                readings[idx]['humidity'] = float(readings[idx - 1]['humidity'])
 
 
-            # print(readings[idx + 1]['humidity'])
-            # print("humid mean: " + str(humidmean))
-            # print("Idx +2 :" + str(readings[idx + 2]['humidity']))
-            # print("Idx :" + str(readings[idx]['humidity']))
+        if float(readings[idx+1]['dht11'] is not None):
 
+            # assumes that the first reading is not an error. If the element is a clear error:
+            if float(readings[idx+1]['dht11']) > 50 or float(readings[idx+1]['dht11']) < 10:
 
-            #print("Idx" + str(idx+1) +": " + str(float(readings[idx+1]['humidity']))+" Diff: " + str(difference)+ " " + " Mean: " + str(humiditymean))
+                # replace the element with the previous element (this is why it's import first element is not an error
+                readings[idx + 1]['dht11'] = float(readings[idx]['dht11'])
 
-    print ("dht22 mean: " + str(mean))
-    print ("humidity mean: " + str(humiditymean))
+            # if the the difference between an element and its preceding element is greater than 5:
+            elif (float(readings[idx + 1]['dht11']) - float(readings[idx]['dht11'])) > 3:
+
+                readings[idx ]['dht11'] = float(readings[idx-1]['dht11'])
+
+            # if the the difference between an element and its next element is greater than 5:
+            elif (float(readings[idx ]['dht11']) - float(readings[idx + 1]['dht11'])) > 3:
+
+                readings[idx+1]['dht11'] = float(readings[idx]['dht11'])
+
 
 
     return readings
