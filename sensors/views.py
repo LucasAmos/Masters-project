@@ -6,6 +6,7 @@ from models import Sensordata, User
 from flask_restful import Resource, Api, reqparse, reqparse
 from datetime import datetime, timedelta
 from faultDetection.faultDetector2 import correctfault2
+from sqlalchemy import  or_
 
 api = Api(app)
 auth =HTTPBasicAuth()
@@ -127,7 +128,12 @@ def deviceidrange(start, end, deviceid):
     start = datetime.strptime(start, '%d-%m-%Y %H:%M:%S')
     end = datetime.strptime(end, '%d-%m-%Y %H:%M:%S')
 
-    sensordata = db.session.query(Sensordata).filter(Sensordata.time >= start, Sensordata.time <= end, Sensordata.DeviceID == deviceid).all()
+    sensordata = db.session.query(Sensordata).filter(
+        Sensordata.time >= start,
+        Sensordata.time <= end,
+        Sensordata.DeviceID == deviceid,
+        Sensordata.dht22 is not None
+    ).all()
     data_array = []
 
     for data in sensordata:
