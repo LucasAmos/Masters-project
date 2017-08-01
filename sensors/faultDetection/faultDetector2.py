@@ -3,15 +3,17 @@ import math
 
 def correctfault2(readings, sensorid):
 
-    # print("readings length: " + str(len(readings)))
-    # humiditycount = 0
-    #
-    # for reading in readings:
-    #     humiditycount += float(reading['humidity'])
-    #
-    # humiditymean = humiditycount / len(readings)
-    # humidityvariance = 0
-    #
+    print("readings length: " + str(len(readings)))
+    humiditycount = 0
+
+    for reading in readings:
+        humiditycount += float(reading['humidity'])
+
+    humiditymean = humiditycount / len(readings)
+    humidityvariance = 0
+
+    print("humidity mean: " + str(humiditymean))
+
     # for reading in readings:
     #     humidityvariance += (float(reading['humidity']) - humiditymean) ** 2
     #
@@ -114,7 +116,7 @@ def correctfault2(readings, sensorid):
     #             elif (float(readings[idx]['dht11']) - float(readings[idx + 1]['dht11'])) > dht11variance :
     #
     #                 readings[idx + 1]['dht11'] = float(readings[idx]['dht11'])
-
+    #
 
     return readings
 
