@@ -38,19 +38,8 @@ def visualisation():
         Sensordata.humidity < 100
     ).order_by(Sensordata.time.asc()).all()
 
-    # JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
-    # JCCoffee = correctfault(JCCoffee)
-
-    # readings1 = db.session.query(Sensordata).filter(
-    #     Sensordata.DeviceID == "PiJCCoffee"
-    # ).order_by(Sensordata.time.asc()).limit(2880).all()
-
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
-
     JCCoffee = correctfault2(JCCoffee, 22)
-    #JCCoffee = correctfault(JCCoffee)
-
-
 
 
     readings2 = db.session.query(Sensordata).filter(
@@ -61,8 +50,8 @@ def visualisation():
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
     JCLab, errors2 = Sensordatas_schema.dump(readings2)
-
     JCLab = correctfault2(JCLab, 11)
+
 
     readings3 = db.session.query(Sensordata).filter(
         Sensordata.DeviceID == "PiJHLabDoor",
@@ -73,7 +62,6 @@ def visualisation():
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
     JHLab, errors3 = Sensordatas_schema.dump(readings3)
-
     JHLab = correctfault2(JHLab, 11)
 
     return render_template('visualisation.html', JCCoffee=JCCoffee, JHLab=JHLab, JCLab=JCLab)
@@ -84,7 +72,6 @@ def visualisation():
 # requests.get('http://localhost:8080/readings').json()
 @app.route('/readings', methods=['GET'])
 def readings():
-
 
     sensordata = Sensordata.query.order_by(Sensordata.id.desc())
     data_array = []
@@ -103,8 +90,6 @@ def readings():
                    'motion': reading.motion
                    }
         data_array.append(reading)
-
-
 
     return jsonify(data_array)
 
@@ -160,7 +145,7 @@ def deviceidrange(start, end, deviceid):
                    }
         data_array.append(reading)
 
-        data_array = correctfault(data_array)
+        data_array = correctfault2(data_array)
 
     return jsonify(data_array)
 
@@ -324,6 +309,6 @@ def hourvisualisation(deviceid, start):
 
     data2, errors = Sensordatas_schema.dump(readings2)
 
-    data2 = correctfault2(data2, 22)
+    data2 = correctfault2(data2, 11)
 
     return render_template('hourvisualisation.html', data=data, data2=data2)
