@@ -132,7 +132,7 @@ def deviceidrange(start, end, deviceid):
         Sensordata.time >= start,
         Sensordata.time <= end,
         Sensordata.DeviceID == deviceid,
-        Sensordata.dht22 < 100
+        or_(Sensordata.dht11 < 100, Sensordata.dht22 < 100)
     ).all()
     data_array = []
 
