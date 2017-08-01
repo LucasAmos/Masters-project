@@ -5,7 +5,6 @@ from sensors import app, db
 from models import Sensordata, User
 from flask_restful import Resource, Api, reqparse, reqparse
 from datetime import datetime, timedelta
-from faultDetection.faultDetector import correctfault
 from faultDetection.faultDetector2 import correctfault2
 
 api = Api(app)
@@ -145,9 +144,8 @@ def deviceidrange(start, end, deviceid):
                    }
         data_array.append(reading)
 
-        #data_array = correctfault2(data_array, 11)
+        data_array = correctfault2(data_array, 11)
 
-    print(len(data_array))
 
     return jsonify(data_array)
 
