@@ -131,8 +131,9 @@ def deviceidrange(start, end, deviceid):
     sensordata = db.session.query(Sensordata).filter(
         Sensordata.time >= start,
         Sensordata.time <= end,
-        Sensordata.DeviceID == deviceid
-
+        Sensordata.DeviceID == deviceid,
+        Sensordata.humidity < 100,
+        or_(Sensordata.dht11 < 100, Sensordata.dht22 < 100)
     ).all()
     data_array = []
 
@@ -150,7 +151,7 @@ def deviceidrange(start, end, deviceid):
                    }
         data_array.append(reading)
 
-    #data_array = correctfault2(data_array, 11)
+    data_array = correctfault2(data_array, 11)
 
 
     return jsonify(data_array)
