@@ -131,9 +131,8 @@ def deviceidrange(start, end, deviceid):
     sensordata = db.session.query(Sensordata).filter(
         Sensordata.time >= start,
         Sensordata.time <= end,
-        Sensordata.DeviceID == deviceid,
-        Sensordata.humidity < 100,
-        or_(Sensordata.dht11 < 100, Sensordata.dht22 < 100)
+        Sensordata.DeviceID == deviceid
+
     ).all()
     data_array = []
 
