@@ -58,5 +58,4 @@ def correctfault(readings):
 
                 readings[idx+1]['dht11'] = float(readings[idx]['dht11'])
 
-    print("fault detector 1")
     return readings
