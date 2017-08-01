@@ -147,6 +147,8 @@ def deviceidrange(start, end, deviceid):
 
         #data_array = correctfault2(data_array, 11)
 
+        print(len(data_array))
+
     return jsonify(data_array)
 
 

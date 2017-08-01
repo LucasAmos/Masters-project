@@ -3,7 +3,7 @@ import math
 
 def correctfault2(readings, sensorid):
 
-    print("readings lenght: " + str(len(readings)))
+    print("readings length: " + str(len(readings)))
     humiditycount = 0
 
     for reading in readings:
