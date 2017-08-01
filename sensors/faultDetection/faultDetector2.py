@@ -2,14 +2,14 @@ import math
 
 
 def correctfault2(readings, sensorid):
+
+    print("readings lenght: " + str(len(readings)))
     humiditycount = 0
 
     for reading in readings:
         humiditycount += float(reading['humidity'])
 
     humiditymean = humiditycount / len(readings)
-
-
     humidityvariance = 0
 
     for reading in readings:
