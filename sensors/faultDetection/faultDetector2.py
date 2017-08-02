@@ -29,11 +29,11 @@ def correctfault2(readings, sensorid):
                 # replace the element with the previous element (this is why it's import first element is not an error
                 readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
 
-            # # if the the difference between an element and its preceding element is greater than 5:
-            # elif (float(readings[idx + 1]['humidity']) - float(readings[idx]['humidity'])) > humidityvariance/2:
-            #
-            #     # replace the element with the preceding element
-            #     readings[idx]['humidity'] = float(readings[idx - 1]['humidity'])
+            # if the the difference between an element and its preceding element is greater than 5:
+            elif (float(readings[idx ]['humidity']) - float(readings[idx+1]['humidity'])) > humidityvariance/2:
+
+                # replace the element with the preceding element
+                readings[idx+1 ]['humidity'] = float(readings[idx ]['humidity'])
 
     if sensorid == 22:
 
