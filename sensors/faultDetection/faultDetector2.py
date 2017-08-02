@@ -56,22 +56,22 @@ def correctfault2(readings, sensorid):
         dht22variance = dht22variance / (len(readings) - 1)
         dht22variance = math.sqrt(dht22variance)
 
-        for idx, reading in enumerate(readings[1:-1]):
-
-
-            if float(readings[idx+1]['dht22'] is not None):
-
-
-                #
-                # # if the the difference between an element and its preceding element is greater than 5:
-                # if (float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22'])) > dht22variance/2:
-                #
-                #     readings[idx +1]['dht22'] = float(readings[idx]['dht22'])
-                #
-                # # if the the difference between an element and its next element is greater than 5:
-                # elif (float(readings[idx ]['dht22']) - float(readings[idx + 1]['dht22'])) > dht22variance/2:
-                #
-                #     readings[idx+1]['dht22'] = float(readings[idx]['dht22'])
+        # for idx, reading in enumerate(readings[1:-1]):
+        #
+        #
+        #     if float(readings[idx+1]['dht22'] is not None):
+        #
+        #
+        #
+        #         # if the the difference between an element and its preceding element is greater than 5:
+        #         if (float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22'])) > dht22variance/2:
+        #
+        #             readings[idx +1]['dht22'] = float(readings[idx]['dht22'])
+        #
+        #         # if the the difference between an element and its next element is greater than 5:
+        #         elif (float(readings[idx ]['dht22']) - float(readings[idx + 1]['dht22'])) > dht22variance/2:
+        #
+        #             readings[idx+1]['dht22'] = float(readings[idx]['dht22'])
 
     if sensorid == 11:
 
