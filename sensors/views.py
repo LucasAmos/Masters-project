@@ -303,7 +303,7 @@ def hourvisualisation(deviceid, start):
 
     data, errors1 = Sensordatas_schema.dump(readings)
 
-    data = correctfault2(data, 22)
+    data = correctfault2(data, 11)
 
     start2 = datetime.strptime(start, '%d-%m-%Y %H:%M:%S')
     end2 = start2 + timedelta(days=7)
@@ -316,6 +316,6 @@ def hourvisualisation(deviceid, start):
 
     data2, errors = Sensordatas_schema.dump(readings2)
 
-    data2 = correctfault2(data2, 22)
+    data2 = correctfault2(data2, 11)
 
     return render_template('hourvisualisation.html', data=data, data2=data2)

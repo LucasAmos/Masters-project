@@ -108,12 +108,12 @@ def correctfault2(readings, sensorid):
                 #     readings[idx + 1]['dht11'] = float(readings[idx]['dht11'])
 
                 # if the the difference between an element and its preceding element is greater than half the variance:
-                if (float(readings[idx + 1]['dht11']) - float(readings[idx]['dht11'])) > dht11variance :
+                if (float(readings[idx + 1]['dht11']) - float(readings[idx]['dht11'])) > dht11variance:
 
                     readings[idx +1]['dht11'] = float(readings[idx ]['dht11'])
 
                 # if the the difference between an element and its next element is greater than half the variance:
-                elif (float(readings[idx]['dht11']) - float(readings[idx + 1]['dht11'])) > dht11variance :
+                elif (float(readings[idx]['dht11']) - float(readings[idx + 1]['dht11'])) > dht11variance:
 
                     readings[idx + 1]['dht11'] = float(readings[idx]['dht11'])
 
