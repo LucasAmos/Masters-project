@@ -40,7 +40,7 @@
     // define the 2nd line
     var valueline4 = d3.line()
         .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(d.dht22); });
+        .y(function(d) { return y(d.dht11); });
 
     // append the svg obgect to the body of the page
     // appends a 'group' element to 'svg'
@@ -56,7 +56,7 @@
     data2.forEach(function(d) {
         d.date = parseTime(d.date);
         d.voc = +d.humidity;
-        array.push(d.dht22)
+        array.push(d.dht11)
 
     });
 
@@ -64,7 +64,7 @@
     // Scale the range of the data
     x.domain(d3.extent(data2, function(d) { return d.date; }));
     y.domain([0, d3.max(data2, function(d) {
-        return Math.max(d.dht22); })]);
+        return Math.max(d.dht11); })]);
 
     // Add the valueline2 path.
     svg.append("path")
@@ -139,7 +139,7 @@
     // define the 2nd line
     var valueline4 = d3.line()
         .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(d.dht22); });
+        .y(function(d) { return y(d.dht11); });
 
     // append the svg obgect to the body of the page
     // appends a 'group' element to 'svg'
@@ -155,7 +155,7 @@
     data.forEach(function(d) {
         d.date = parseTime(d.date);
         d.voc = +d.humidity;
-        array.push(d.dht22)
+        array.push(d.dht11)
 
     });
 
@@ -163,7 +163,7 @@
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, d3.max(data, function(d) {
-        return Math.max(d.dht22); })]);
+        return Math.max(d.dht11); })]);
 
     // Add the valueline2 path.
     svg.append("path")
@@ -235,7 +235,7 @@
     // define the 2nd line
     var valueline4 = d3.line()
         .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(d.dht22); });
+        .y(function(d) { return y(d.dht11); });
 
     // append the svg obgect to the body of the page
     // appends a 'group' element to 'svg'
@@ -257,7 +257,7 @@
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, d3.max(data, function(d) {
-        return Math.max(d.dht22); })]);
+        return Math.max(d.dht11); })]);
 
     // Add the valueline2 path.
     svg.append("path")
@@ -327,7 +327,7 @@
     // define the 2nd line
     var valueline4 = d3.line()
         .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(d.dht22); });
+        .y(function(d) { return y(d.dht11); });
 
     // append the svg obgect to the body of the page
     // appends a 'group' element to 'svg'
@@ -349,7 +349,7 @@
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, d3.max(data, function(d) {
-        return Math.max(d.dht22); })]);
+        return Math.max(d.dht11); })]);
 
     // Add the valueline2 path.
     svg.append("path")
