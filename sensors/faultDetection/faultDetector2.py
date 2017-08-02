@@ -33,7 +33,7 @@ def correctfault2(readings, sensorid):
             elif (float(readings[idx]['humidity']) - float(readings[idx + 1]['humidity'])) > humidityvariance / 2:
 
                 # replace the element with the preceding element
-                readings[idx ]['humidity'] = float(readings[idx-1]['humidity'])
+                readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
 
     if sensorid == 22:
 
