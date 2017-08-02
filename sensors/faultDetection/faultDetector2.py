@@ -93,6 +93,7 @@ def correctfault2(readings, sensorid):
         dht11variance = dht11variance / (len(readings) - 1)
         dht11variance = math.sqrt(dht11variance)
 
+        print(dht11variance)
 
 
         for idx, reading in enumerate(readings[1:-1]):
