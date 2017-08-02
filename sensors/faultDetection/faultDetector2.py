@@ -119,9 +119,4 @@ def correctfault2(readings, sensorid):
 
                     readings[idx + 1]['dht11'] = float(readings[idx]['dht11'])
 
-
     return readings
-
-
-
-
