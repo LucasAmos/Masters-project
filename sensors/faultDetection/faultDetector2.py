@@ -18,6 +18,7 @@ def correctfault2(readings, sensorid):
 
 
 
+
     # do not iterate over the first and last elements
     for idx, reading in enumerate(readings[1:-1]):
 
@@ -31,14 +32,15 @@ def correctfault2(readings, sensorid):
 
             # if the the difference between an element and its preceding element is greater than 5:
             if (float(readings[idx + 1]['humidity']) - float(readings[idx]['humidity'])) > humidityvariance / 2:
-                readings[idx+1]['humidity'] = float(readings[idx]['humidity'])
+                readings[idx+1]['humidity'] = float(readings[idx]['humidity']) + float(readings[idx+2]['humidity'])/2
 
 
             # if the the difference between an element and its preceding element is greater than 5:
             elif (float(readings[idx]['humidity']) - float(readings[idx + 1]['humidity'])) > humidityvariance / 2:
 
                 # replace the element with the preceding element
-                readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
+                readings[idx + 1]['humidity'] = float(readings[idx]['humidity'] + float(readings[idx+2]['humidity'])/2)
+
 
     if sensorid == 22:
 
