@@ -20,7 +20,7 @@ def correctfault2(readings, sensorid):
 
 
     # do not iterate over the first and last elements
-    for idx, reading in enumerate(readings[1:-1]):
+    for idx, reading in enumerate(readings[1:-2]):
 
         if float(readings[idx + 1]['humidity'] is not None):
 
