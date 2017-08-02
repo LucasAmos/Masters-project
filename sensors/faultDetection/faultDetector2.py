@@ -32,7 +32,7 @@ def correctfault2(readings, sensorid):
 
             # if the the difference between an element and its preceding element is greater than 5:
             if (float(readings[idx + 1]['humidity']) - float(readings[idx]['humidity'])) > humidityvariance / 2:
-                readings[idx+1]['humidity'] = float(readings[idx]['humidity']) + float(readings[idx+2]['humidity'])/2
+                readings[idx+1]['humidity'] = (float(readings[idx]['humidity']) + float(readings[idx+2]['humidity']))/2
 
 
             # if the the difference between an element and its preceding element is greater than 5:
