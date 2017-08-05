@@ -16,7 +16,7 @@ def correctfault2(readings, sensorid):
     humidityvariance = humidityvariance / (len(readings) - 1)
     humidityvariance = math.sqrt(humidityvariance)
 
-    print(humidityvariance)
+    print("humid: " + str(humidityvariance))
 
 
 
@@ -111,13 +111,13 @@ def correctfault2(readings, sensorid):
 
                 # if the the difference between an element and its preceding element is greater than half the variance:
                 if (float(readings[idx + 1]['dht11']) - float(readings[idx]['dht11'])) > dht11variance *2:
-                    print("loop 1: " + str(idx) +" " + str(readings[idx-1]['dht11']) +" " + str(readings[idx]['dht11']) + " " + str(readings[idx +1]['dht11'])  )
+                    #print("loop 1: " + str(idx) +" " + str(readings[idx-1]['dht11']) +" " + str(readings[idx]['dht11']) + " " + str(readings[idx +1]['dht11'])  )
 
                     readings[idx +1]['dht11'] = float(readings[idx ]['dht11'])
 
                 # if the the difference between an element and its next element is greater than half the variance:
                 elif (float(readings[idx]['dht11']) - float(readings[idx + 1]['dht11'])) > dht11variance *2:
-                    print("loop 2: " + str(idx) +" " + str(readings[idx-1]['dht11']) +" " + str(readings[idx]['dht11']) + " " + str(readings[idx +1]['dht11'])  )
+                    #print("loop 2: " + str(idx) +" " + str(readings[idx-1]['dht11']) +" " + str(readings[idx]['dht11']) + " " + str(readings[idx +1]['dht11'])  )
 
                     readings[idx + 1]['dht11'] = float(readings[idx]['dht11'])
 
