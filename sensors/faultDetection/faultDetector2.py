@@ -75,12 +75,12 @@ def correctfault2(readings, sensorid):
                 #     readings[idx + 1]['dht22'] = float(readings[idx]['dht22'])
 
                 # if the the difference between an element and its preceding element is greater than 5:
-                if (float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22'])) > dht22variance*2:
+                if (float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22'])) > dht22variance*1.5:
 
                     readings[idx +1]['dht22'] = float(readings[idx]['dht22'])
 
                 # if the the difference between an element and its next element is greater than 5:
-                elif (float(readings[idx ]['dht22']) - float(readings[idx + 1]['dht22'])) > dht22variance*2:
+                elif (float(readings[idx ]['dht22']) - float(readings[idx + 1]['dht22'])) > dht22variance*1.5:
 
                     readings[idx+1]['dht22'] = float(readings[idx]['dht22'])
 
@@ -116,13 +116,13 @@ def correctfault2(readings, sensorid):
                 #     readings[idx + 1]['dht11'] = float(readings[idx]['dht11'])
 
                 # if the the difference between an element and its preceding element is greater than half the variance:
-                if (float(readings[idx + 1]['dht11']) - float(readings[idx]['dht11'])) > dht11variance *2:
+                if (float(readings[idx + 1]['dht11']) - float(readings[idx]['dht11'])) > dht11variance *1.5:
                     #print("loop 1: " + str(idx) +" " + str(readings[idx-1]['dht11']) +" " + str(readings[idx]['dht11']) + " " + str(readings[idx +1]['dht11'])  )
 
                     readings[idx +1]['dht11'] = float(readings[idx ]['dht11'])
 
                 # if the the difference between an element and its next element is greater than half the variance:
-                elif (float(readings[idx]['dht11']) - float(readings[idx + 1]['dht11'])) > dht11variance *2:
+                elif (float(readings[idx]['dht11']) - float(readings[idx + 1]['dht11'])) > dht11variance *1.5:
                     #print("loop 2: " + str(idx) +" " + str(readings[idx-1]['dht11']) +" " + str(readings[idx]['dht11']) + " " + str(readings[idx +1]['dht11'])  )
 
                     readings[idx + 1]['dht11'] = float(readings[idx]['dht11'])
