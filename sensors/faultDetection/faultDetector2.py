@@ -12,9 +12,8 @@ def correctfault2(readings, sensorid):
 
     for reading in readings:
 
-        if float(reading['humidity']) < 100:
 
-            humidityvariance += (float(reading['humidity']) - humiditymean) ** 2
+        humidityvariance += (float(reading['humidity']) - humiditymean) ** 2
 
     humidityvariance = humidityvariance / (len(readings) - 1)
     humidityvariance = math.sqrt(humidityvariance)
