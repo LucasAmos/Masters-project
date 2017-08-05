@@ -150,7 +150,7 @@ def deviceidrange(start, end, deviceid):
                    }
         data_array.append(reading)
 
-    #data_array = correctfault2(data_array, 22)
+    data_array = correctfault2(data_array, 22)
 
 
     return jsonify(data_array)

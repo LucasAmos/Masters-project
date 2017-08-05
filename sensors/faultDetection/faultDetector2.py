@@ -21,7 +21,7 @@ def correctfault2(readings, sensorid):
 
 
 
-    count1 = 0
+
 
     # do not iterate over the first and last elements
     for idx, reading in enumerate(readings[1:-1]):
@@ -37,15 +37,13 @@ def correctfault2(readings, sensorid):
             # if the the difference between an element and its preceding element is greater than 5:
             if (float(readings[idx + 1]['humidity']) - float(readings[idx]['humidity'])) > humidityvariance / 2:
                 readings[idx+1]['humidity'] = float(readings[idx]['humidity'])
-                count1 = count1 + 1
+
 
             # if the the difference between an element and its preceding element is greater than 5:
             elif (float(readings[idx]['humidity']) - float(readings[idx + 1]['humidity'])) > humidityvariance / 2:
-                count1 = count1 + 1
+
                 # replace the element with the preceding element
                 readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
-
-    print ("humidity: " + str(count1))
 
     if sensorid == 22:
 
@@ -65,8 +63,6 @@ def correctfault2(readings, sensorid):
         dht22variance = dht22variance / (len(readings) - 1)
         dht22variance = math.sqrt(dht22variance)
 
-        count = 0
-
         for idx, reading in enumerate(readings[1:-1]):
 
 
@@ -80,15 +76,13 @@ def correctfault2(readings, sensorid):
 
                 # if the the difference between an element and its preceding element is greater than 5:
                 if (float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22'])) > dht22variance/2:
-                    count = count +1
+
                     readings[idx +1]['dht22'] = float(readings[idx]['dht22'])
 
                 # if the the difference between an element and its next element is greater than 5:
                 elif (float(readings[idx ]['dht22']) - float(readings[idx + 1]['dht22'])) > dht22variance/2:
-                    count = count + 1
-                    readings[idx+1]['dht22'] = float(readings[idx]['dht22'])
 
-        print ("dht22: " + str(count))
+                    readings[idx+1]['dht22'] = float(readings[idx]['dht22'])
 
     elif sensorid == 11:
 
