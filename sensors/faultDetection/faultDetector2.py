@@ -47,7 +47,7 @@ def correctfault2(readings, sensorid):
 
     if sensorid == 22:
 
-        print("humid: " + str(humidityvariance))
+        #print("humid: " + str(humidityvariance))
 
         dht22count = 0
         dht22variance = 0
