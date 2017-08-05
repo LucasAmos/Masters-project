@@ -89,6 +89,8 @@ def correctfault2(readings, sensorid):
         dht11count = 0
         dht11variance = 0
 
+        print(dht11variance)
+
         for reading in readings:
             dht11count += float(reading['dht11'])
 
