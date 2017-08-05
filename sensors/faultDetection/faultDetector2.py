@@ -75,12 +75,12 @@ def correctfault2(readings, sensorid):
                 #     readings[idx + 1]['dht22'] = float(readings[idx]['dht22'])
 
                 # if the the difference between an element and its preceding element is greater than 5:
-                if (float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22'])) > dht22variance*1.5:
+                if (float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22'])) > dht22variance/2:
 
                     readings[idx +1]['dht22'] = float(readings[idx]['dht22'])
 
                 # if the the difference between an element and its next element is greater than 5:
-                elif (float(readings[idx ]['dht22']) - float(readings[idx + 1]['dht22'])) > dht22variance*1.5:
+                elif (float(readings[idx ]['dht22']) - float(readings[idx + 1]['dht22'])) > dht22variance/2:
 
                     readings[idx+1]['dht22'] = float(readings[idx]['dht22'])
 
@@ -89,6 +89,7 @@ def correctfault2(readings, sensorid):
         dht11count = 0
         dht11variance = 0
 
+        print(dht11variance)
 
         for reading in readings:
             dht11count += float(reading['dht11'])
@@ -101,7 +102,7 @@ def correctfault2(readings, sensorid):
         dht11variance = dht11variance / (len(readings) - 1)
         dht11variance = math.sqrt(dht11variance)
 
-        print(dht11variance)
+        #print(dht11variance)
 
 
         for idx, reading in enumerate(readings[1:-1]):
@@ -116,13 +117,13 @@ def correctfault2(readings, sensorid):
                 #     readings[idx + 1]['dht11'] = float(readings[idx]['dht11'])
 
                 # if the the difference between an element and its preceding element is greater than half the variance:
-                if (float(readings[idx + 1]['dht11']) - float(readings[idx]['dht11'])) > dht11variance :
+                if (float(readings[idx + 1]['dht11']) - float(readings[idx]['dht11'])) > dht11variance *2:
                     #print("loop 1: " + str(idx) +" " + str(readings[idx-1]['dht11']) +" " + str(readings[idx]['dht11']) + " " + str(readings[idx +1]['dht11'])  )
 
                     readings[idx +1]['dht11'] = float(readings[idx ]['dht11'])
 
                 # if the the difference between an element and its next element is greater than half the variance:
-                elif (float(readings[idx]['dht11']) - float(readings[idx + 1]['dht11'])) > dht11variance :
+                elif (float(readings[idx]['dht11']) - float(readings[idx + 1]['dht11'])) > dht11variance *2:
                     #print("loop 2: " + str(idx) +" " + str(readings[idx-1]['dht11']) +" " + str(readings[idx]['dht11']) + " " + str(readings[idx +1]['dht11'])  )
 
                     readings[idx + 1]['dht11'] = float(readings[idx]['dht11'])
