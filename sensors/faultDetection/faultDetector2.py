@@ -16,6 +16,8 @@ def correctfault2(readings, sensorid):
     humidityvariance = humidityvariance / (len(readings) - 1)
     humidityvariance = math.sqrt(humidityvariance)
 
+    print(humidityvariance)
+
 
 
     # do not iterate over the first and last elements
