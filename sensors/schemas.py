@@ -4,6 +4,7 @@ from marshmallow import Schema, fields
 
 ma = Marshmallow()
 
+
 class SensordataSchema(ma.Schema):
 
         co2 = fields.Str(attribute="co2")
@@ -15,11 +16,7 @@ class SensordataSchema(ma.Schema):
         humidity = fields.Str(attribute="humidity")
         light = fields.Str(attribute="light")
 
-
         model = Sensordata
-
-
-
 
 Sensordata_schema = SensordataSchema()
 Sensordatas_schema = SensordataSchema(many=True)

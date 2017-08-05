@@ -3,10 +3,10 @@ from schemas import ma, Sensordatas_schema
 from flask import render_template, request, jsonify, abort, make_response
 from sensors import app, db
 from models import Sensordata, User
-from flask_restful import Resource, Api, reqparse, reqparse
+from flask_restful import Resource, Api
 from datetime import datetime, timedelta
 from faultDetection.faultDetector2 import correctfault2
-from sqlalchemy import  or_
+from sqlalchemy import or_
 
 api = Api(app)
 auth =HTTPBasicAuth()
