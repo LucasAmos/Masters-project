@@ -38,7 +38,7 @@ def visualisation():
     ).order_by(Sensordata.time.asc()).all()
 
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
-    #JCCoffee = correctfault2(JCCoffee, 22)
+    JCCoffee = correctfault2(JCCoffee, 22)
 
 
     readings2 = db.session.query(Sensordata).filter(
