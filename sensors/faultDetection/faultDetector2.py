@@ -29,18 +29,13 @@ def correctfault2(readings, sensorid):
             if (float(readings[idx + 1]['humidity']) - float(readings[idx]['humidity'])) > humidityvariance / 2:
                 readings[idx+1]['humidity'] = float(readings[idx]['humidity'])
 
-                if 2280 < int(idx + 1) > 2240:
-                    print("idx: " + str(float(readings[idx]['humidity']) + " " + "idx+1" + " " + str(
-                        float(readings[idx + 1]['humidity']))))
-
 
             elif (float(readings[idx]['humidity']) - float(readings[idx + 1]['humidity'])) > humidityvariance / 2:
 
                 readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
 
-                if 2280 < int(idx + 1) > 2240:
-                    print("idx: " + str(float(readings[idx]['humidity']) + " " + "idx+1" + " " + str(
-                        float(readings[idx + 1]['humidity']))))
+                print("Humidity2: " + str(float(readings[idx ]['humidity'])))
+
 
     if sensorid == 22:
 
