@@ -84,7 +84,7 @@ def correctfault2(readings, sensorid):
                 #
                 #     readings[idx+1]['dht22'] = float(readings[idx]['dht22'])
 
-    elif sensorid == 11:
+    if sensorid == 11:
 
         dht11count = 0
         dht11variance = 0
