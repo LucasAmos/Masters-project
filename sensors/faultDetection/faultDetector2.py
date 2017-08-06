@@ -24,20 +24,19 @@ def correctfault2(readings, sensorid):
     # do not iterate over the first and last elements
     for idx, reading in enumerate(readings[1:-1]):
 
+        if (float(readings[idx + 1]['humidity'] > 1000)):
+            print("Humidity: " + str(float(readings[idx + 1]['humidity'])))
+
         if float(readings[idx + 1]['humidity'] is not None):
 
             if (float(readings[idx + 1]['humidity']) - float(readings[idx]['humidity'])) > humidityvariance / 2:
                 readings[idx+1]['humidity'] = float(readings[idx]['humidity'])
 
-                print("Humidity1: " + str(float(readings[idx + 1]['humidity'])))
-                print("Humidity1: " + str(float(readings[idx ]['humidity'])))
 
             elif (float(readings[idx]['humidity']) - float(readings[idx + 1]['humidity'])) > humidityvariance / 2:
 
                 readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
 
-                print("Humidity2: " + str(float(readings[idx + 1]['humidity'])))
-                print("Humidity2: " + str(float(readings[idx ]['humidity'])))
 
 
     if sensorid == 22:
