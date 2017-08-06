@@ -65,8 +65,8 @@ def correctfault2(readings, sensorid):
 
         for idx, reading in enumerate(readings[1:-1]):
 
-
-            if float(readings[idx+1]['dht22'] is not None):
+            #
+            # if float(readings[idx+1]['dht22'] is not None):
 
                 # # assumes that the first reading is not an error. If the element is a clear error:
                 # if float(readings[idx+1]['dht22']) > (dht22mean + (dht22variance * 2)) or float(readings[idx+1]['dht22']) < (dht22mean - (dht22variance * 2)):
