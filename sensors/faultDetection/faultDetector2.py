@@ -19,35 +19,19 @@ def correctfault2(readings, sensorid):
     humidityvariance = humidityvariance / (len(readings) - 1)
     humidityvariance = math.sqrt(humidityvariance)
 
-
-
-
-
     # do not iterate over the first and last elements
     for idx, reading in enumerate(readings[1:-1]):
 
         if float(readings[idx + 1]['humidity'] is not None):
 
-            # # assumes that the first reading is not an error. If the element is a clear error:
-            # if float(readings[idx + 1]['humidity']) > 70 or float(readings[idx + 1]['humidity']) < humidityvariance*2:
-            #
-            #     # replace the element with the previous element (this is why it's import first element is not an error
-            #     readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
-
-            # if the the difference between an element and its preceding element is greater than 5:
             if (float(readings[idx + 1]['humidity']) - float(readings[idx]['humidity'])) > humidityvariance / 2:
                 readings[idx+1]['humidity'] = float(readings[idx]['humidity'])
 
-
-            # if the the difference between an element and its preceding element is greater than 5:
             elif (float(readings[idx]['humidity']) - float(readings[idx + 1]['humidity'])) > humidityvariance / 2:
 
-                # replace the element with the preceding element
                 readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
 
     if sensorid == 22:
-
-        #print("humid: " + str(humidityvariance))
 
         dht22count = 0
         dht22variance = 0
@@ -68,18 +52,10 @@ def correctfault2(readings, sensorid):
 
             if float(readings[idx+1]['dht22'] is not None):
 
-                # # assumes that the first reading is not an error. If the element is a clear error:
-                # if float(readings[idx+1]['dht22']) > (dht22mean + (dht22variance * 2)) or float(readings[idx+1]['dht22']) < (dht22mean - (dht22variance * 2)):
-                #
-                #     # replace the element with the previous element (this is why it's import first element is not an error
-                #     readings[idx + 1]['dht22'] = float(readings[idx]['dht22'])
-
-                # if the the difference between an element and its preceding element is greater than 5:
                 if (float(readings[idx + 1]['dht22']) - float(readings[idx]['dht22'])) > dht22variance/2:
 
                     readings[idx +1]['dht22'] = float(readings[idx]['dht22'])
 
-                # if the the difference between an element and its next element is greater than 5:
                 elif (float(readings[idx ]['dht22']) - float(readings[idx + 1]['dht22'])) > dht22variance/2:
 
                     readings[idx+1]['dht22'] = float(readings[idx]['dht22'])
@@ -100,29 +76,17 @@ def correctfault2(readings, sensorid):
         dht11variance = dht11variance / (len(readings) - 1)
         dht11variance = math.sqrt(dht11variance)
 
-        #print(dht11variance)
 
 
         for idx, reading in enumerate(readings[1:-1]):
 
             if float(readings[idx + 1]['dht11'] is not None):
 
-                # # assumes that the first reading is not an error. If the element is a clear error:
-                # if float(readings[idx + 1]['dht11']) > (dht11mean + (dht11variance * 2)) or float(
-                #         readings[idx + 1]['dht11']) < (dht11mean - (dht11variance * 2)):
-                #
-                #     # replace the element with the previous element (this is why it's import first element is not an error
-                #     readings[idx + 1]['dht11'] = float(readings[idx]['dht11'])
-
-                # if the the difference between an element and its preceding element is greater than half the variance:
                 if (float(readings[idx + 1]['dht11']) - float(readings[idx]['dht11'])) > dht11variance *2:
-                    #print("loop 1: " + str(idx) +" " + str(readings[idx-1]['dht11']) +" " + str(readings[idx]['dht11']) + " " + str(readings[idx +1]['dht11'])  )
 
                     readings[idx +1]['dht11'] = float(readings[idx ]['dht11'])
 
-                # if the the difference between an element and its next element is greater than half the variance:
                 elif (float(readings[idx]['dht11']) - float(readings[idx + 1]['dht11'])) > dht11variance *2:
-                    #print("loop 2: " + str(idx) +" " + str(readings[idx-1]['dht11']) +" " + str(readings[idx]['dht11']) + " " + str(readings[idx +1]['dht11'])  )
 
                     readings[idx + 1]['dht11'] = float(readings[idx]['dht11'])
 
