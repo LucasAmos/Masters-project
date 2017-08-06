@@ -25,7 +25,7 @@ def correctfault2(readings, sensorid):
     for idx, reading in enumerate(readings[1:-1]):
 
         if (float(readings[idx + 1]['humidity']) > 100):
-            print("Humidity: " + str(float(readings[idx + 1]['humidity'])))
+            print("Humidity: " +" idx: " +str(idx+1) +" " + str(float(readings[idx + 1]['humidity'])))
 
         if float(readings[idx + 1]['humidity'] is not None):
 
