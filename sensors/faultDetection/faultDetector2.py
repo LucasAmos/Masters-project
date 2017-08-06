@@ -62,8 +62,8 @@ def correctfault2(readings, sensorid):
 
         dht22variance = dht22variance / (len(readings) - 1)
         dht22variance = math.sqrt(dht22variance)
-
-        for idx, reading in enumerate(readings[1:-1]):
+        #
+        # for idx, reading in enumerate(readings[1:-1]):
 
             #
             # if float(readings[idx+1]['dht22'] is not None):
