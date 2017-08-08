@@ -355,4 +355,4 @@ def environment():
         latestreadings[data.DeviceID] = reading
 
 
-    return AQI.ratings(latestreadings)
+    return render_template('environment.html', data=latestreadings)
