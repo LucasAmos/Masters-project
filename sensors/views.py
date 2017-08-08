@@ -7,6 +7,7 @@ from flask_restful import Resource, Api
 from datetime import datetime, timedelta
 from faultDetection.faultDetector2 import correctfault2
 from sqlalchemy import or_
+from AQI import AQI
 
 api = Api(app)
 auth =HTTPBasicAuth()
@@ -318,3 +319,40 @@ def hourvisualisation(deviceid, start):
     data2 = correctfault2(data2, 11)
 
     return render_template('hourvisualisation.html', data=data, data2=data2)
+
+
+@app.route('/environment/', methods=['GET'])
+def environment():
+
+
+    PiJCCoffee = db.session.query(Sensordata).filter(Sensordata.DeviceID == "PiJCCoffee").order_by(
+        Sensordata.time.desc()).first_or_404()
+
+    PiJCLabRear = db.session.query(Sensordata).filter(Sensordata.DeviceID == "PiJCLabRear").order_by(
+        Sensordata.time.desc()).first_or_404()
+
+    PiJHLabDoor = db.session.query(Sensordata).filter(Sensordata.DeviceID == "PiJHLabDoor").order_by(
+        Sensordata.time.desc()).first_or_404()
+
+    readings = [PiJCCoffee, PiJCLabRear, PiJHLabDoor]
+
+    latestreadings = {}
+
+    for data in readings:
+
+        reading = {'id': data.id,
+                   'deviceid': data.DeviceID,
+                   'datetime': data.time.strftime('%d-%m-%Y  %H:%M:%S'),
+                   'humidity': data.humidity,
+                   'pressure': data.pressure,
+                   'voc': data.voc,
+                   'dht11': data.dht11,
+                   'dht22': data.dht22,
+                   'uv': data.uv,
+                   'motion': data.motion
+                   }
+
+        latestreadings[data.DeviceID] = reading
+
+
+    return AQI.ratings(latestreadings)
