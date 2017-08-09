@@ -58,15 +58,11 @@
         <tr>
             <th>DeviceID </th>
             <th>Time</th>
-            <th>Pressure (hPa)</th>
-            <th>CO2</th>
             <th>VOC</th>
             <th>DHT11</th>
             <th>DHT22</th>
             <th>motion</th>
-            <th>UV</th>
             <th>Humidity</th>
-            <th>Light</th>
 
         </tr>
         </thead>
@@ -80,15 +76,11 @@
             <tr>
                 <td> {{ reading.DeviceID }}</td>
                 <td> {{ moment(reading.time).format('MMMM Do YYYY, h:mm:ss a') }}</td>
-                <td> {{ reading.pressure }}</td>
-                <td> {{ reading.co2 }}</td>
                 <td> {{ reading.voc }}</td>
                 <td> {{ reading.dht11 }}</td>
                 <td> {{ reading.dht22 }}</td>
                 <td> {{ reading.motion }}</td>
-                <td> {{ reading.uv }}</td>
                 <td> {{ reading.humidity }}</td>
-                <td> {{ reading.light }}</td>
 
 
 
