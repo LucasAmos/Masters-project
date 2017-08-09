@@ -1,31 +1,31 @@
 {%  extends "base.html" %}
 
 {%  block title %}
-  MSc project
+    MSc project
 {%  endblock %}
 
 
 {%  block body %}
-<body>
-<nav class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Sensor data</a>
+    <body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Sensor data</a>
 
-        </div>
+            </div>
 
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="{{  url_for('visualisation') }}">Visualisation</a></li>
-              <li class="active"><a href="{{  url_for('environment') }}">Environment</a></li>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{{  url_for('visualisation') }}">Visualisation</a></li>
+                    <li class="active"><a href="{{  url_for('environment') }}">Environment</a></li>
 
-            {#<li><a href="#about">About</a></li>
+                    {#<li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -40,60 +40,60 @@
               </ul>
             </li>#}
 
-          </ul>
+                </ul>
 
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
-
-
-
-<div class="container">
-
-
-    <table class = "table table-striped table-fixed">
-        <caption>  </caption>
-
-        <thead>
-        <tr>
-            <th>DeviceID </th>
-            <th>Time</th>
-            <th>VOC</th>
-            <th>DHT11</th>
-            <th>DHT22</th>
-            <th>motion</th>
-            <th>Humidity</th>
-
-        </tr>
-        </thead>
-
-
-        <tbody>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
 
 
 
-        {% for reading in readings %}
+    <div class="container">
+
+
+        <table class = "table table-striped table-fixed">
+            <caption>  </caption>
+
+            <thead>
             <tr>
-                <td> {{ reading.DeviceID }}</td>
-                <td> {{ moment(reading.time).format('MMMM Do YYYY, h:mm:ss a') }}</td>
-                <td> {{ reading.voc }}</td>
-                <td> {{ reading.dht11 }}</td>
-                <td> {{ reading.dht22 }}</td>
-                <td> {{ reading.motion }}</td>
-                <td> {{ reading.humidity }}</td>
+                <th>DeviceID </th>
+                <th>Time</th>
+                <th>VOC</th>
+                <th>DHT11</th>
+                <th>DHT22</th>
+                <th>motion</th>
+                <th>Humidity</th>
 
-
-
-
-
-                <td></td>
             </tr>
+            </thead>
 
-        {%  endfor %}
 
-        </tbody>
-    </table>
-    {#
+            <tbody>
+
+
+
+            {% for reading in readings %}
+                <tr>
+                    <td> {{ reading.DeviceID }}</td>
+                    <td> {{ moment(reading.time).format('MMMM Do YYYY, h:mm:ss a') }}</td>
+                    <td> {{ reading.voc }}</td>
+                    <td> {{ reading.dht11 }}</td>
+                    <td> {{ reading.dht22 }}</td>
+                    <td> {{ reading.motion }}</td>
+                    <td> {{ reading.humidity }}</td>
+
+
+
+
+
+                    <td></td>
+                </tr>
+
+            {%  endfor %}
+
+            </tbody>
+        </table>
+        {#
     <div class="row">
         <form action="." method="POST">
             <textarea class="form-control" name="temperature" placeholder="Enter a temperature value"></textarea>
@@ -108,10 +108,10 @@
 
 
 
-</div>
+    </div>
 
 
-</body>
+    </body>
 
 {%  endblock %}
 
