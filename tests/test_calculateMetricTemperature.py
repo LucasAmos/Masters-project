@@ -24,7 +24,6 @@ class TestCalculateMetric(TestCase):
         metric = AQI.calculateMetric(21, 0, 0)
         self.assertEqual(metric[0], 0)
 
-
     def test_temperature_bottom_acceptable_lower(self):
         metric = AQI.calculateMetric(21.1, 0, 0)
         self.assertEqual(metric[0], 0.05)
@@ -40,7 +39,6 @@ class TestCalculateMetric(TestCase):
     def test_temperature_bottom_good_lower(self):
         metric = AQI.calculateMetric(23.1, 0, 0)
         self.assertEqual(metric[0], 1)
-
 
     def test_temperature_good(self):
         metric = AQI.calculateMetric(24, 0, 0)
