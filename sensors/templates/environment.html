@@ -43,38 +43,51 @@
             {% for key, reading in data.items() %}
                 <div class="col-md-3 col-md-offset-1  reading">
 
-                    <div class="row text-center location">
+                <div class="row text-center location">
 
-                        {%  if key == "PiJCCoffee" %}
-                            Coffee area
+                    {%  if key == "PiJCCoffee" %}
+                        Coffee area
 
-                        {%  elif key == "PiJHLabDoor" %}
-                            John Honey lab
+                    {%  elif key == "PiJHLabDoor" %}
+                        John Honey lab
 
-                        {%  elif key == "PiJCLabRear" %}
-                            Jack Cole lab
+                    {%  elif key == "PiJCLabRear" %}
+                        Jack Cole lab
 
-                        {% endif %}
+                    {% endif %}
 
 
-
-                    </div>
-
-                    <div class=" row text-center AQI">
-                        {{ reading.AQI }}
-                    </div>
 
                 </div>
+
+
+                {%  if reading.AQI > 0.5 %}
+                    <div class=" row text-center AQI AQI-good">
+
+                {%  elif reading.AQI >= -0.5 %}
+                    <div class=" row text-center AQI AQI-acceptable">
+
+                {%  elif reading.AQI < -0.5 %}
+                    <div class=" row text-center AQI AQI-bad">
+
+                {% endif %}
+
+
+
+            {{ reading.AQI }}
+            </div>
+
+            </div>
 
             {%  endfor %}
 
 
-        </div>
+            </div>
 
-        <br>
-        <br>
+            <br>
+            <br>
 
-    </div>
+            </div>
 
 
     </body>

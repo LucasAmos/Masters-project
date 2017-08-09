@@ -17,9 +17,16 @@ Tooltips
     font-weight: bold;
 }
 
-.col-centered{
-    float: none;
-    margin: 0 auto
+.AQI-good{
+    background-color: #24CF4B;
+}
+
+.AQI-acceptable{
+    background-color: #FF880B;
+}
+
+.AQI-bad{
+    background-color: #FF0B0B;
 }
 
 .col-md-4{

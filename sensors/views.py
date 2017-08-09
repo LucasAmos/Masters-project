@@ -356,7 +356,4 @@ def environment():
 
     data = AQI.ratings(latestreadings)
 
-    print(type(data))
-
-
     return render_template('environment.html', data= data)
