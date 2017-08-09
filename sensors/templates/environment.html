@@ -34,12 +34,15 @@
 
 <div class="container">
 
-        {% for reading in data %}
-          {{ reading}}
-            <br>
+        {% for key, reading in data.items() %}
+
+            {{ key }}            {{ reading.AQI }} <br>
+
+
 
         {%  endfor %}
-
+<br>
+<br>
 {{ data }}
 
 </div>

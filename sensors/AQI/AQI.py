@@ -14,7 +14,7 @@ def ratings(locationreadings):
 
         locationreadings[reading]['AQI'] = metric
 
-    return jsonify(locationreadings)
+    return locationreadings
 
 
 
