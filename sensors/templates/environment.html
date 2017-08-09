@@ -32,21 +32,21 @@
 
 
 
-    <div class="container">
+    <div class="container ">
 
 
 
 
-        <div class="row">
+        <div class="row ">
 
 
             {% for key, reading in data.items() %}
-                <div class="col-md-4">
+                <div class="col-md-3 col-md-offset-1  reading">
 
                     <div class="row text-center location">
 
                         {%  if key == "PiJCCoffee" %}
-                            Jack Cole Coffee area
+                            Coffee area
 
                         {%  elif key == "PiJHLabDoor" %}
                             John Honey lab
@@ -60,7 +60,7 @@
 
                     </div>
 
-                    <div class=" row text-center">
+                    <div class=" row text-center AQI">
                         {{ reading.AQI }}
                     </div>
 
