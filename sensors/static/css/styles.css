@@ -8,6 +8,10 @@ Tooltips
     font-size: 4vh;
 }
 
+.breakdown {
+    background-color: #C8C8C8;
+}
+
 .reading{
     margin-bottom: 2vh;
 }

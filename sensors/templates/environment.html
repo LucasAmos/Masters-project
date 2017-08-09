@@ -62,20 +62,39 @@
 
 
                 {%  if reading.AQI > 0.5 %}
-                    <div class=" row text-center AQI AQI-good">
+                    <div class="row text-center AQI AQI-good">
 
                 {%  elif reading.AQI >= -0.5 %}
-                    <div class=" row text-center AQI AQI-acceptable">
+                    <div class="row text-center AQI AQI-acceptable">
 
                 {%  elif reading.AQI < -0.5 %}
-                    <div class=" row text-center AQI AQI-bad">
+                    <div class="row text-center AQI AQI-bad">
 
                 {% endif %}
 
-
-
             {{ reading.AQI }}
+
             </div>
+
+            <div class="row text-center breakdown">
+
+            <div class="col-md-4 ">
+                <div class="col-md-12"> Temperature</div>
+                <div class="col-md-12"> {{ reading.temperature}}</div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-12"> Humidity</div>
+                <div class="col-md-12"> {{ reading.humidity}}</div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-12"> VOC </div>
+                <div class="col-md-12"> {{ reading.voc}}</div>
+            </div>
+
+            </div>
+
 
             </div>
 

@@ -7,6 +7,7 @@ def ratings(locationreadings):
         voc = locationreadings[reading]['voc']
         humidity = locationreadings[reading]['humidity']
         temperature = locationreadings[reading]['dht11'] if locationreadings[reading]['dht11'] != None else locationreadings[reading]['dht22']
+        locationreadings[reading]['temperature'] = temperature
 
         metric = calculateMetric(temperature, humidity, voc)
 
