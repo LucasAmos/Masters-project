@@ -39,13 +39,13 @@
                 </div>
 
 
-                {%  if reading.AQI > 0.5 %}
+                {%  if reading.AQI > 0.66 %}
                     <div class="row text-center AQI AQI-good">
 
-                {%  elif reading.AQI >= -0.5 %}
+                {%  elif reading.AQI >= -0.66 %}
                     <div class="row text-center AQI AQI-acceptable">
 
-                {%  elif reading.AQI < -0.5 %}
+                {%  elif reading.AQI < -0.66 %}
                     <div class="row text-center AQI AQI-bad">
 
                 {% endif %}
