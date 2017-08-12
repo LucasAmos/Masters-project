@@ -5,6 +5,7 @@ from sensors import app, db
 from models import Sensordata, User
 from flask_restful import Resource, Api
 from datetime import datetime, timedelta
+from faultDetection.faultDetector2 import correctfault2
 from sqlalchemy import or_
 from AQI import AQI
 
