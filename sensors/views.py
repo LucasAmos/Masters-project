@@ -5,7 +5,7 @@ from sensors import app, db
 from models import Sensordata, User
 from flask_restful import Resource, Api
 from datetime import datetime, timedelta
-from faultDetection.faultDetector import correctfault2
+from faultDetection.faultDetector import correctfault
 from sqlalchemy import or_
 from AQI import AQI
 
@@ -39,7 +39,7 @@ def visualisation():
     ).order_by(Sensordata.time.asc()).all()
 
     JCCoffee, errors1 = Sensordatas_schema.dump(readings1)
-    JCCoffee = correctfault2(JCCoffee, 22)
+    JCCoffee = correctfault(JCCoffee, 22)
 
 
     readings2 = db.session.query(Sensordata).filter(
@@ -50,7 +50,7 @@ def visualisation():
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
     JCLab, errors2 = Sensordatas_schema.dump(readings2)
-    JCLab = correctfault2(JCLab, 11)
+    JCLab = correctfault(JCLab, 11)
 
 
     readings3 = db.session.query(Sensordata).filter(
@@ -62,7 +62,7 @@ def visualisation():
     ).order_by(Sensordata.time.desc()).limit(2880).all()
 
     JHLab, errors3 = Sensordatas_schema.dump(readings3)
-    JHLab = correctfault2(JHLab, 11)
+    JHLab = correctfault(JHLab, 11)
 
     return render_template('visualisation.html', JCCoffee=JCCoffee, JHLab=JHLab, JCLab=JCLab)
 
@@ -151,7 +151,7 @@ def deviceidrange(start, end, deviceid):
                    }
         data_array.append(reading)
 
-    data_array = correctfault2(data_array, 22)
+    data_array = correctfault(data_array, 22)
 
 
     return jsonify(data_array)
@@ -303,7 +303,7 @@ def hourvisualisation(deviceid, start):
 
     data, errors1 = Sensordatas_schema.dump(readings)
 
-    data = correctfault2(data, 11)
+    data = correctfault(data, 11)
 
     start2 = datetime.strptime(start, '%d-%m-%Y %H:%M:%S')
     end2 = start2 + timedelta(days=7)
@@ -316,7 +316,7 @@ def hourvisualisation(deviceid, start):
 
     data2, errors = Sensordatas_schema.dump(readings2)
 
-    data2 = correctfault2(data2, 11)
+    data2 = correctfault(data2, 11)
 
     return render_template('hourvisualisation.html', data=data, data2=data2)
 

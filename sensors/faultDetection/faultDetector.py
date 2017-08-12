@@ -1,7 +1,7 @@
 import math
 
 
-def correctfault2(readings, sensorid):
+def correctfault(readings, sensorid):
     humiditycount = 0
 
     for reading in readings:
