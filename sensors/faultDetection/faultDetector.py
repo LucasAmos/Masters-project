@@ -33,6 +33,9 @@ def correctfault(readings, sensorid):
                 readings[idx + 1]['humidity'] = float(readings[idx]['humidity'])
 
 
+
+    if sensorid == 22:
+
         dht22count = 0
         dht22variance = 0
 
@@ -60,7 +63,7 @@ def correctfault(readings, sensorid):
 
                     readings[idx+1]['dht22'] = float(readings[idx]['dht22'])
 
-
+    elif sensorid == 11:
 
         dht11count = 0
         dht11variance = 0
